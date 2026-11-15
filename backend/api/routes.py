@@ -81,7 +81,7 @@ def get_vendors(db: Session = Depends(get_db)):
     customs = db.query(DBCustomVendorConfig).all()
     out = {}
     for vid, prof in registered.items():
-        out[vid] = prof.dict()
+        out[vid] = prof.model_dump()
     for c in customs:
         try:
             cfg = json.loads(c.config_json)
