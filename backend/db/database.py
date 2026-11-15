@@ -1,5 +1,6 @@
 """SQLAlchemy Database Models and Session Configuration for VidyutSetu."""
 
+import os
 import json
 import subprocess
 from datetime import datetime, timezone
@@ -17,11 +18,15 @@ def get_app_git_sha() -> str:
     except Exception:
         return "unknown"
 
-DATABASE_URL = "sqlite:///./vidyutsetu.db"
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./vidyutsetu.db")
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    connect_args=connect_args
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
