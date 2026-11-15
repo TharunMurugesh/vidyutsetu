@@ -1,0 +1,26 @@
+name = "vidyutsetu"
+type = "javascript"
+main = "src/index.ts"
+compatibility_date = "2024-12-16"
+
+# Pages configuration for frontend
+pages_build_output_dir = "backend/static"
+
+# Environment variables
+env.development.vars = { BACKEND_URL = "http://localhost:8000" }
+env.staging.vars = { BACKEND_URL = "https://api-staging.vidyutsetu.dev" }
+env.production.vars = { BACKEND_URL = "https://api.vidyutsetu.dev" }
+
+# Routes configuration - proxy API requests to backend
+routes = [
+  { pattern = "/api/*", zone_name = "vidyutsetu.dev", custom_domain = true }
+]
+
+# Build configuration
+[build]
+command = "npm run build"
+cwd = "."
+
+# Triggers for automatic deployment
+[triggers]
+crons = ["0 0 * * *"]

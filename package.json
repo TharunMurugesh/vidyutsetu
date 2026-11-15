@@ -7,6 +7,12 @@
   ],
   "scripts": {
     "build": "cd frontend && npm install && npm run build",
-    "dev": "cd frontend && npm run dev"
+    "dev": "cd frontend && npm run dev",
+    "backend:dev": "uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000",
+    "backend:build": "docker build -t vidyutsetu-backend:latest .",
+    "deploy:pages": "wrangler pages deploy backend/static --project-name vidyutsetu",
+    "deploy:dev": "wrangler deploy --env development",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:prod": "wrangler deploy --env production"
   }
 }

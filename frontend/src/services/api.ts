@@ -7,7 +7,7 @@ import {
   ContractDiffResult,
 } from '../types/api';
 
-const BASE_URL = '/api';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 export const api = {
   async getHealth(): Promise<{ status: string; service: string; version: string; standards_scope: string[] }> {
