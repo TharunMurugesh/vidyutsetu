@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  vidyutsetu:
+    build: .
+    container_name: vidyutsetu-workbench
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./vidyutsetu.db:/app/vidyutsetu.db
+    restart: unless-stopped

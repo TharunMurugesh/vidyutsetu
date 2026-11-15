@@ -1,0 +1,419 @@
+{
+  "system_id": "alpha-hes",
+  "generated_at": "2026-11-11T17:20:20.234855+00:00",
+  "format": "DLMS/COSEM OBIS IS15959",
+  "meter_data": [
+    {
+      "meter_number": "SM-KA-0001",
+      "clock": "2026-11-11T16:20:20.233952+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2600.1827,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 468.0329,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 228.79,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 3.435,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.93,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 50.07,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": [
+        {
+          "code": "EVT_DLMS_TAMPER_MAG",
+          "timestamp": "2026-11-11T16:50:20.233952+00:00",
+          "description": "Strong static magnetic field > 0.5 Tesla detected near meter core."
+        }
+      ]
+    },
+    {
+      "meter_number": "SM-KA-0001",
+      "clock": "2026-11-11T16:35:20.233952+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2600.399,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 468.0718,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 227.44,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.036,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.943,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 50.0,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": [
+        {
+          "code": "EVT_DLMS_TAMPER_MAG",
+          "timestamp": "2026-11-11T16:50:20.233952+00:00",
+          "description": "Strong static magnetic field > 0.5 Tesla detected near meter core."
+        }
+      ]
+    },
+    {
+      "meter_number": "SM-KA-0001",
+      "clock": "2026-11-11T16:50:20.233952+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2600.6322,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 468.1138,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 228.91,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.275,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.953,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 49.95,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": [
+        {
+          "code": "EVT_DLMS_TAMPER_MAG",
+          "timestamp": "2026-11-11T16:50:20.233952+00:00",
+          "description": "Strong static magnetic field > 0.5 Tesla detected near meter core."
+        }
+      ]
+    },
+    {
+      "meter_number": "SM-KA-0001",
+      "clock": "2026-11-11T17:05:20.233952+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2600.8764,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 468.1578,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 233.2,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.479,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.935,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 49.93,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": [
+        {
+          "code": "EVT_DLMS_TAMPER_MAG",
+          "timestamp": "2026-11-11T16:50:20.233952+00:00",
+          "description": "Strong static magnetic field > 0.5 Tesla detected near meter core."
+        }
+      ]
+    },
+    {
+      "meter_number": "SM-KA-0002",
+      "clock": "2026-11-11T16:20:20.233952+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2750.1789,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 495.0322,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 233.41,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 3.335,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.919,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 49.93,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": [
+        {
+          "code": "EVT_DLMS_POWER_FAIL",
+          "timestamp": "2026-11-11T17:05:20.233952+00:00",
+          "description": "Total phase voltage collapse (Grid supply interruption)."
+        },
+        {
+          "code": "EVT_DLMS_POWER_RES",
+          "timestamp": "2026-11-11T17:35:20.233952+00:00",
+          "description": "Grid supply restored; voltage stabilized at 231.4V."
+        }
+      ]
+    },
+    {
+      "meter_number": "SM-KA-0002",
+      "clock": "2026-11-11T16:35:20.233952+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2750.3891,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 495.07,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 233.73,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 3.902,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.922,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 50.01,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": [
+        {
+          "code": "EVT_DLMS_POWER_FAIL",
+          "timestamp": "2026-11-11T17:05:20.233952+00:00",
+          "description": "Total phase voltage collapse (Grid supply interruption)."
+        },
+        {
+          "code": "EVT_DLMS_POWER_RES",
+          "timestamp": "2026-11-11T17:35:20.233952+00:00",
+          "description": "Grid supply restored; voltage stabilized at 231.4V."
+        }
+      ]
+    },
+    {
+      "meter_number": "SM-KA-0002",
+      "clock": "2026-11-11T16:50:20.233952+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2750.6174,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 495.1111,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 226.31,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.48,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.901,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 49.91,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": [
+        {
+          "code": "EVT_DLMS_POWER_FAIL",
+          "timestamp": "2026-11-11T17:05:20.233952+00:00",
+          "description": "Total phase voltage collapse (Grid supply interruption)."
+        },
+        {
+          "code": "EVT_DLMS_POWER_RES",
+          "timestamp": "2026-11-11T17:35:20.233952+00:00",
+          "description": "Grid supply restored; voltage stabilized at 231.4V."
+        }
+      ]
+    },
+    {
+      "meter_number": "SM-KA-0002",
+      "clock": "2026-11-11T17:05:20.233952+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2750.8592,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 495.1547,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 226.5,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.66,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.916,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 49.99,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": [
+        {
+          "code": "EVT_DLMS_POWER_FAIL",
+          "timestamp": "2026-11-11T17:05:20.233952+00:00",
+          "description": "Total phase voltage collapse (Grid supply interruption)."
+        },
+        {
+          "code": "EVT_DLMS_POWER_RES",
+          "timestamp": "2026-11-11T17:35:20.233952+00:00",
+          "description": "Grid supply restored; voltage stabilized at 231.4V."
+        }
+      ]
+    }
+  ]
+}

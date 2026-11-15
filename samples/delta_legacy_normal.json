@@ -1,0 +1,86 @@
+{
+  "vendor": "delta-legacy",
+  "count": 8,
+  "telemetry": [
+    {
+      "device_uid": "SM-KA-0001",
+      "ts_epoch_sec": 1794414020,
+      "act_wh": 2600194.8,
+      "exp_wh": 0.0,
+      "freq_hz": 50.05,
+      "volt_mv": 229760.0,
+      "curr_ma": 3600.0,
+      "p_fact_pct": 94.2
+    },
+    {
+      "device_uid": "SM-KA-0001",
+      "ts_epoch_sec": 1794414920,
+      "act_wh": 2600387.6,
+      "exp_wh": 0.0,
+      "freq_hz": 49.93,
+      "volt_mv": 226050.0,
+      "curr_ma": 3629.0,
+      "p_fact_pct": 94.0
+    },
+    {
+      "device_uid": "SM-KA-0001",
+      "ts_epoch_sec": 1794415820,
+      "act_wh": 2600628.6,
+      "exp_wh": 0.0,
+      "freq_hz": 49.96,
+      "volt_mv": 231800.0,
+      "curr_ma": 4522.0,
+      "p_fact_pct": 92.0
+    },
+    {
+      "device_uid": "SM-KA-0001",
+      "ts_epoch_sec": 1794416720,
+      "act_wh": 2600893.9,
+      "exp_wh": 0.0,
+      "freq_hz": 49.93,
+      "volt_mv": 231980.0,
+      "curr_ma": 4877.0,
+      "p_fact_pct": 93.8
+    },
+    {
+      "device_uid": "SM-KA-0002",
+      "ts_epoch_sec": 1794414020,
+      "act_wh": 2750195.3,
+      "exp_wh": 0.0,
+      "freq_hz": 50.0,
+      "volt_mv": 231120.0,
+      "curr_ma": 3663.0,
+      "p_fact_pct": 92.3
+    },
+    {
+      "device_uid": "SM-KA-0002",
+      "ts_epoch_sec": 1794414920,
+      "act_wh": 2750407.7,
+      "exp_wh": 0.0,
+      "freq_hz": 50.09,
+      "volt_mv": 228330.0,
+      "curr_ma": 3962.0,
+      "p_fact_pct": 93.9
+    },
+    {
+      "device_uid": "SM-KA-0002",
+      "ts_epoch_sec": 1794415820,
+      "act_wh": 2750623.1,
+      "exp_wh": 0.0,
+      "freq_hz": 49.97,
+      "volt_mv": 227950.0,
+      "curr_ma": 4095.0,
+      "p_fact_pct": 92.3
+    },
+    {
+      "device_uid": "SM-KA-0002",
+      "ts_epoch_sec": 1794416720,
+      "act_wh": 2750881.0,
+      "exp_wh": 0.0,
+      "freq_hz": 49.99,
+      "volt_mv": 225870.0,
+      "curr_ma": 4866.0,
+      "p_fact_pct": 93.8
+    }
+  ]
+}

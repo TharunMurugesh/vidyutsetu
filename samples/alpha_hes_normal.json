@@ -1,0 +1,351 @@
+{
+  "system_id": "alpha-hes",
+  "generated_at": "2026-11-11T17:20:20.231891+00:00",
+  "format": "DLMS/COSEM OBIS IS15959",
+  "meter_data": [
+    {
+      "meter_number": "SM-KA-0001",
+      "clock": "2026-11-11T16:20:20.231058+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2600.2126,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 468.0383,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 232.0,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 3.801,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.964,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 50.04,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": []
+    },
+    {
+      "meter_number": "SM-KA-0001",
+      "clock": "2026-11-11T16:35:20.231058+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2600.4255,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 468.0766,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 230.6,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 3.861,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.957,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 49.95,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": []
+    },
+    {
+      "meter_number": "SM-KA-0001",
+      "clock": "2026-11-11T16:50:20.231058+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2600.6443,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 468.116,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 231.64,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.147,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.911,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 49.92,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": []
+    },
+    {
+      "meter_number": "SM-KA-0001",
+      "clock": "2026-11-11T17:05:20.231058+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2600.901,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 468.1622,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 227.35,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.672,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.967,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 50.0,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": []
+    },
+    {
+      "meter_number": "SM-KA-0002",
+      "clock": "2026-11-11T16:20:20.231058+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2750.1873,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 495.0337,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 229.16,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 3.555,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.919,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 50.08,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": []
+    },
+    {
+      "meter_number": "SM-KA-0002",
+      "clock": "2026-11-11T16:35:20.231058+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2750.4088,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 495.0736,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 232.55,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 3.94,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.967,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 50.1,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": []
+    },
+    {
+      "meter_number": "SM-KA-0002",
+      "clock": "2026-11-11T16:50:20.231058+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2750.6359,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 495.1145,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 234.32,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.139,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.936,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 50.04,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": []
+    },
+    {
+      "meter_number": "SM-KA-0002",
+      "clock": "2026-11-11T17:05:20.231058+00:00",
+      "interval_minutes": 15,
+      "registers": {
+        "1.0.1.8.0.255": {
+          "value": 2750.9022,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.2.8.0.255": {
+          "value": 0.0,
+          "scaler": 0,
+          "unit": "kWh"
+        },
+        "1.0.3.8.0.255": {
+          "value": 495.1624,
+          "scaler": 0,
+          "unit": "kVArh"
+        },
+        "1.0.12.7.0.255": {
+          "value": 229.09,
+          "scaler": 0,
+          "unit": "V"
+        },
+        "1.0.11.7.0.255": {
+          "value": 4.935,
+          "scaler": 0,
+          "unit": "A"
+        },
+        "1.0.13.7.0.255": {
+          "value": 0.942,
+          "scaler": 0,
+          "unit": ""
+        },
+        "1.0.14.7.0.255": {
+          "value": 49.92,
+          "scaler": 0,
+          "unit": "Hz"
+        }
+      },
+      "events": []
+    }
+  ]
+}

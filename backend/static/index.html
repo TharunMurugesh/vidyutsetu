@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VidyutSetu — AMI Interoperability Testing Workbench</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            },
+            amber: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .code-preview { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
+<body class="h-full flex flex-col font-sans bg-slate-950 text-slate-100 antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-50 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/20">
+        <i data-lucide="zap" class="w-6 h-6 text-slate-950 fill-current"></i>
+      </div>
+      <div>
+        <div class="flex items-center space-x-2">
+          <h1 class="text-xl font-bold tracking-tight text-white">VIDYUTSETU</h1>
+          <span class="px-2 py-0.5 text-xs font-semibold uppercase tracking-wider rounded bg-brand-500/10 text-brand-400 border border-brand-500/20">Enterprise AMI Workbench</span>
+        </div>
+        <p class="text-xs text-slate-400">Advanced Metering Infrastructure (HES / MDMS) Interoperability Suite & Conformance Engine</p>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="flex items-center space-x-1 bg-slate-950/60 p-1 rounded-xl border border-slate-800">
+      <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="nav-tab active px-3.5 py-1.5 rounded-lg text-sm font-medium transition flex items-center space-x-2 bg-brand-600 text-white shadow-sm">
+        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+        <span>Dashboard</span>
+      </button>
+      <button onclick="switchTab('workbench')" id="tab-btn-workbench" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i data-lucide="play-circle" class="w-4 h-4"></i>
+        <span>Testing Workbench</span>
+      </button>
+      <button onclick="switchTab('transformer')" id="tab-btn-transformer" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i data-lucide="arrow-left-right" class="w-4 h-4"></i>
+        <span>Live Transformer</span>
+      </button>
+      <button onclick="switchTab('vendors')" id="tab-btn-vendors" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i data-lucide="cpu" class="w-4 h-4"></i>
+        <span>Vendor Adapters</span>
+      </button>
+      <button onclick="switchTab('history')" id="tab-btn-history" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i data-lucide="history" class="w-4 h-4"></i>
+        <span>Audit History</span>
+      </button>
+      <button onclick="switchTab('contracts')" id="tab-btn-contracts" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i data-lucide="file-check" class="w-4 h-4"></i>
+        <span>Contracts</span>
+      </button>
+      <button onclick="switchTab('standards')" id="tab-btn-standards" class="nav-tab px-3.5 py-1.5 rounded-lg text-sm font-medium transition flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800">
+        <i data-lucide="book-open" class="w-4 h-4"></i>
+        <span>Standards Ref</span>
+      </button>
+    </nav>
+
+    <!-- Quick Status Badge -->
+    <div class="flex items-center space-x-3 text-xs">
+      <div class="flex items-center space-x-1.5 bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-medium">IEC 61968-9 Conforming</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Area -->
+  <main class="flex-1 overflow-y-auto p-6 max-w-7xl w-full mx-auto space-y-6">
+
+    <!-- TAB 1: EXECUTIVE DASHBOARD -->
+    <section id="view-dashboard" class="tab-view space-y-6">
+      <!-- Metric Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Test Executions</p>
+              <h3 id="stat-total-runs" class="text-3xl font-extrabold text-white mt-1">--</h3>
+              <p class="text-xs text-brand-400 mt-1 flex items-center"><i data-lucide="check-circle" class="w-3.5 h-3.5 mr-1"></i> Recorded test runs</p>
+            </div>
+            <div class="p-3 bg-brand-500/10 rounded-lg text-brand-400 border border-brand-500/20">
+              <i data-lucide="activity" class="w-6 h-6"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Total Run Count</p>
+              <h3 id="stat-avg-score" class="text-3xl font-extrabold text-white mt-1">--</h3>
+              <p class="text-xs text-emerald-400 mt-1 flex items-center"><i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1"></i> Assertion-based evaluation</p>
+            </div>
+            <div class="p-3 bg-emerald-500/10 rounded-lg text-emerald-400 border border-emerald-500/20">
+              <i data-lucide="award" class="w-6 h-6"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Active Adapters</p>
+              <h3 id="stat-adapters" class="text-3xl font-extrabold text-white mt-1">4</h3>
+              <p class="text-xs text-blue-400 mt-1">Alpha, Beta, Gamma, Delta</p>
+            </div>
+            <div class="p-3 bg-blue-500/10 rounded-lg text-blue-400 border border-blue-500/20">
+              <i data-lucide="cpu" class="w-6 h-6"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Canonical Standards</p>
+              <h3 class="text-2xl font-extrabold text-white mt-1">IS 15959</h3>
+              <p class="text-xs text-purple-400 mt-1">DLMS/COSEM & IEC 61968</p>
+            </div>
+            <div class="p-3 bg-purple-500/10 rounded-lg text-purple-400 border border-purple-500/20">
+              <i data-lucide="check-check" class="w-6 h-6"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vendor Readiness Matrix -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+                <i data-lucide="network" class="w-5 h-5 text-brand-400"></i>
+                <span>Vendor Interoperability Conformance Matrix</span>
+              </h2>
+              <p class="text-xs text-slate-400">Syntactic, Semantic, and Electrical conformance benchmark across vendor systems</p>
+            </div>
+            <button onclick="refreshDashboard()" class="text-xs text-slate-400 hover:text-white flex items-center space-x-1 px-2.5 py-1 bg-slate-800 rounded-lg border border-slate-700">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              <span>Refresh</span>
+            </button>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-sm">
+              <thead>
+                <tr class="border-b border-slate-800 text-xs uppercase text-slate-400">
+                  <th class="py-3 px-3">Vendor System</th>
+                  <th class="py-3 px-3">Type</th>
+                  <th class="py-3 px-3">Protocol / Standard</th>
+                  <th class="py-3 px-3">Bidirectional</th>
+                  <th class="py-3 px-3">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60 font-mono text-xs">
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-3 px-3 font-semibold text-white font-sans flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-400"></span>
+                    <span>Alpha HES</span>
+                  </td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-sans">HES</span></td>
+                  <td class="py-3 px-3 text-slate-300 font-sans">DLMS/COSEM (OBIS IS 15959)</td>
+                  <td class="py-3 px-3 text-emerald-400 font-sans">✓ Full Support</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-sans">Active</span></td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-3 px-3 font-semibold text-white font-sans flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span>Beta HES</span>
+                  </td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-sans">HES</span></td>
+                  <td class="py-3 px-3 text-slate-300 font-sans">Flat CSV Load Survey (IST UTC+5:30)</td>
+                  <td class="py-3 px-3 text-emerald-400 font-sans">✓ Full Support</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-sans">Active</span></td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-3 px-3 font-semibold text-white font-sans flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                    <span>Gamma MDMS</span>
+                  </td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20 font-sans">MDMS</span></td>
+                  <td class="py-3 px-3 text-slate-300 font-sans">CIM IEC 61968-9 Ed 2</td>
+                  <td class="py-3 px-3 text-emerald-400 font-sans">✓ Full Support</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-sans">Active</span></td>
+                </tr>
+                <tr class="hover:bg-slate-800/30 transition">
+                  <td class="py-3 px-3 font-semibold text-white font-sans flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                    <span>Delta Legacy</span>
+                  </td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 font-sans">HES</span></td>
+                  <td class="py-3 px-3 text-slate-300 font-sans">Proprietary Milli-units JSON (Wh, mV, mA)</td>
+                  <td class="py-3 px-3 text-emerald-400 font-sans">✓ Full Support</td>
+                  <td class="py-3 px-3"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-sans">Active</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Quick Launch Workbench Card -->
+        <div class="bg-gradient-to-b from-slate-900 to-slate-900/60 border border-slate-800 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center mb-4 border border-brand-500/20">
+              <i data-lucide="play" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Simulate AMI Test Scenario</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Launch instant synthetic load profiles, simulate grid disturbances (voltage sags/swells, magnetic tamper alerts), and verify cross-vendor conversion in real-time.
+            </p>
+          </div>
+          <div class="mt-6 space-y-2">
+            <button onclick="runQuickDemo('alpha-hes', 'gamma-mdms')" class="w-full py-2.5 px-4 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-sm font-semibold transition flex items-center justify-center space-x-2 shadow-lg shadow-brand-600/20">
+              <i data-lucide="zap" class="w-4 h-4"></i>
+              <span>Run Alpha → Gamma (DLMS to CIM)</span>
+            </button>
+            <button onclick="runQuickDemo('beta-hes', 'alpha-hes')" class="w-full py-2 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-medium transition flex items-center justify-center space-x-2 border border-slate-700">
+              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
+              <span>Run Beta CSV → Alpha DLMS</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Test Executions Table -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+        <h3 class="text-base font-bold text-white mb-4 flex items-center space-x-2">
+          <i data-lucide="clock" class="w-4 h-4 text-brand-400"></i>
+          <span>Recent Test Activity & Interoperability Score Audit</span>
+        </h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 uppercase font-semibold">
+                <th class="py-2.5 px-3">Run ID</th>
+                <th class="py-2.5 px-3">Timestamp</th>
+                <th class="py-2.5 px-3">Source Adapter</th>
+                <th class="py-2.5 px-3">Target Adapter</th>
+                <th class="py-2.5 px-3">Records</th>
+                <th class="py-2.5 px-3">Conformance</th>
+              </tr>
+            </thead>
+            <tbody id="recent-runs-table-body" class="divide-y divide-slate-800/40 font-mono">
+              <tr>
+                <td colspan="6" class="py-6 text-center text-slate-500 font-sans">No test runs executed yet. Launch a test from the Workbench tab!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: TESTING WORKBENCH -->
+    <section id="view-workbench" class="tab-view hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-800">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+              <i data-lucide="cpu" class="w-5 h-5 text-brand-400"></i>
+              <span>AMI Interoperability Test Configuration</span>
+            </h2>
+            <p class="text-xs text-slate-400">Select source and target systems, upload files or generate realistic synthetic AMI load data</p>
+          </div>
+          <div class="flex space-x-2">
+            <button onclick="loadSamplePreset('alpha-hes')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition">Sample Alpha DLMS</button>
+            <button onclick="loadSamplePreset('beta-hes')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition">Sample Beta CSV</button>
+            <button onclick="loadSamplePreset('gamma-mdms')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition">Sample Gamma CIM</button>
+            <button onclick="loadSamplePreset('delta-legacy')" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition">Sample Delta Legacy</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Left Column: Source System -->
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5">Source Vendor Format (Ingestion)</label>
+              <select id="source-vendor-select" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+                <option value="alpha-hes">Alpha HES — DLMS/COSEM OBIS IS15959 (JSON)</option>
+                <option value="beta-hes">Beta HES — Proprietary Flat Load Survey (CSV)</option>
+                <option value="gamma-mdms">Gamma MDMS — CIM IEC 61968-9 (JSON)</option>
+                <option value="delta-legacy">Delta HES — Legacy Proprietary Milli-units (JSON)</option>
+              </select>
+            </div>
+
+            <!-- Synthetic Generator Controls -->
+            <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-300 flex items-center space-x-1.5">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+                  <span>Synthetic AMI Data Generator</span>
+                </span>
+                <button onclick="generateSyntheticIntoWorkbench()" class="text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1 rounded-md transition shadow">
+                  Generate Payload
+                </button>
+              </div>
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div>
+                  <label class="text-slate-400 block mb-1">Meters Count</label>
+                  <input type="number" id="gen-meters" value="3" min="1" max="10" class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white">
+                </div>
+                <div>
+                  <label class="text-slate-400 block mb-1">Intervals / Meter</label>
+                  <input type="number" id="gen-intervals" value="4" min="1" max="24" class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white">
+                </div>
+              </div>
+              <div class="flex items-center space-x-4 pt-1 text-xs">
+                <label class="flex items-center space-x-1.5 text-slate-300 cursor-pointer">
+                  <input type="checkbox" id="gen-inject-anomalies" class="rounded bg-slate-900 border-slate-700 text-brand-500 focus:ring-0">
+                  <span>Inject Electrical Anomalies</span>
+                </label>
+                <label class="flex items-center space-x-1.5 text-slate-300 cursor-pointer">
+                  <input type="checkbox" id="gen-inject-tampers" class="rounded bg-slate-900 border-slate-700 text-brand-500 focus:ring-0">
+                  <span>Inject Tamper Alarms</span>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center mb-1.5">
+                <label class="block text-xs font-semibold text-slate-300 uppercase">Raw Payload Editor / Input</label>
+                <span class="text-[11px] text-slate-400">Paste JSON / CSV or type below</span>
+              </div>
+              <textarea id="raw-payload-input" rows="12" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-3 text-xs text-slate-200 code-preview focus:outline-none focus:border-brand-500 placeholder-slate-600" placeholder="Paste raw vendor JSON or CSV payload here..."></textarea>
+            </div>
+          </div>
+
+          <!-- Right Column: Target Transformation System & Execution -->
+          <div class="space-y-4 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1.5">Target Destination System (Cross-Transformation)</label>
+                <select id="target-vendor-select" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+                  <option value="gamma-mdms">Gamma MDMS — CIM IEC 61968-9 (JSON)</option>
+                  <option value="alpha-hes">Alpha HES — DLMS/COSEM OBIS IS15959 (JSON)</option>
+                  <option value="beta-hes">Beta HES — Proprietary Flat Load Survey (CSV)</option>
+                  <option value="delta-legacy">Delta HES — Legacy Proprietary Milli-units (JSON)</option>
+                  <option value="none">Validate Only (No Target Output)</option>
+                </select>
+              </div>
+
+              <!-- File Upload Alternative -->
+              <div class="border-2 border-dashed border-slate-800 rounded-xl p-5 text-center bg-slate-950/40">
+                <i data-lucide="upload-cloud" class="w-8 h-8 text-slate-500 mx-auto mb-2"></i>
+                <p class="text-xs text-slate-300 font-medium">Or upload a JSON/CSV vendor payload file</p>
+                <input type="file" id="file-upload-input" class="text-xs text-slate-400 mt-2 mx-auto file:mr-2 file:py-1 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-slate-200 hover:file:bg-slate-700 cursor-pointer">
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-2">
+                <div class="font-bold text-slate-300 flex items-center space-x-2">
+                  <i data-lucide="shield" class="w-4 h-4 text-emerald-400"></i>
+                  <span>Conformance Checks Run on Ingestion:</span>
+                </div>
+                <ul class="space-y-1 text-slate-400 pl-5 list-disc">
+                  <li>Schema validation & envelope checks</li>
+                  <li>IS 15959 & IEC 62056 OBIS code verification</li>
+                  <li>Physical electrical boundaries (160V - 300V, monotonic kWh)</li>
+                  <li>Timezone offset normalization & clock drift audit</li>
+                  <li>Diagnostic root-cause isolation & auto-remediation</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Run Button -->
+            <button onclick="runWorkbenchExecution()" id="btn-run-workbench" class="w-full py-3 px-4 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-base font-bold transition flex items-center justify-center space-x-2 shadow-lg shadow-brand-600/30">
+              <i data-lucide="play" class="w-5 h-5"></i>
+              <span>Execute Interoperability Validation & Transformation</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Test Execution Results Container -->
+      <div id="results-container" class="hidden space-y-6">
+        <!-- Score & KPI Summary -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+          <div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-slate-800 gap-4">
+            <div>
+              <div class="flex items-center space-x-3">
+                <span id="res-grade-badge" class="px-3 py-1 rounded-lg text-lg font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">PASS</span>
+                <h3 class="text-xl font-bold text-white">Conformance Evaluation: <span id="res-total-score">0</span> assertion(s)</h3>
+              </div>
+              <p id="res-summary-text" class="text-xs text-slate-300 mt-1.5 font-sans leading-relaxed"></p>
+            </div>
+            <div class="flex items-center space-x-4 text-xs font-mono">
+              <div class="text-right">
+                <span class="text-slate-400 block font-sans">Run ID</span>
+                <span id="res-run-id" class="text-white font-bold">RUN-XXXX</span>
+              </div>
+              <div class="text-right">
+                <span class="text-slate-400 block font-sans">Duration</span>
+                <span id="res-duration" class="text-brand-400 font-bold">-- ms</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Assertion Counts -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 text-xs">
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <div class="flex justify-between items-center mb-1">
+                <span class="text-slate-400 font-medium">Total Assertions</span>
+                <span id="res-syntactic-score" class="font-bold text-white text-base">0</span>
+              </div>
+              <p class="text-slate-500 text-xs mt-1">All requirement checks evaluated</p>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <div class="flex justify-between items-center mb-1">
+                <span class="text-slate-400 font-medium">Mandatory Failures</span>
+                <span id="res-semantic-score" class="font-bold text-rose-400 text-base">0</span>
+              </div>
+              <p class="text-slate-500 text-xs mt-1">Any non-zero count → FAIL verdict</p>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <div class="flex justify-between items-center mb-1">
+                <span class="text-slate-400 font-medium">Warnings</span>
+                <span id="res-integrity-score" class="font-bold text-amber-400 text-base">0</span>
+              </div>
+              <p class="text-slate-500 text-xs mt-1">Non-blocking — results in CONDITIONAL</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diagnostics & Auto-Remediation Suggestions -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+          <h3 class="text-base font-bold text-white mb-3 flex items-center space-x-2">
+            <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+            <span>Diagnostic Issues & Actionable Remediation Rules (<span id="res-issues-count">0</span> detected)</span>
+          </h3>
+          <div id="res-blame-summary" class="flex flex-wrap gap-2 mb-3 text-xs"></div>
+          <div id="res-issues-list" class="space-y-2.5 max-h-72 overflow-y-auto pr-2">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+
+        <!-- Transformed Canonical & Target Payload Viewer -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Stage E: Anomaly Detection Heatmap -->
+          <div id="res-anomaly-section" class="hidden"></div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm space-y-3">
+            <div class="flex justify-between items-center">
+              <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+                <i data-lucide="database" class="w-4 h-4 text-brand-400"></i>
+                <span>Normalized Canonical Data Model (IEC 61968-9)</span>
+              </h4>
+              <button onclick="copyCode('res-canonical-code')" class="text-xs text-slate-400 hover:text-white flex items-center space-x-1">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre id="res-canonical-code" class="bg-slate-950 p-3.5 rounded-lg text-xs text-emerald-400 overflow-x-auto max-h-80 code-preview border border-slate-800"></pre>
+          </div>
+
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm space-y-3">
+            <div class="flex justify-between items-center">
+              <h4 class="text-sm font-bold text-white flex items-center space-x-2">
+                <i data-lucide="send" class="w-4 h-4 text-purple-400"></i>
+                <span>Target Serialized Payload (<span id="res-target-vendor-name">Target</span>)</span>
+              </h4>
+              <button onclick="copyCode('res-target-code')" class="text-xs text-slate-400 hover:text-white flex items-center space-x-1">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre id="res-target-code" class="bg-slate-950 p-3.5 rounded-lg text-xs text-purple-300 overflow-x-auto max-h-80 code-preview border border-slate-800"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: LIVE TRANSFORMER & FIELD MAPPER -->
+    <section id="view-transformer" class="tab-view hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+        <h2 class="text-lg font-bold text-white mb-2 flex items-center space-x-2">
+          <i data-lucide="arrow-left-right" class="w-5 h-5 text-brand-400"></i>
+          <span>Live Two-Way Field Mapping & Canonical Transformation Engine</span>
+        </h2>
+        <p class="text-xs text-slate-400 mb-6">
+          Inspect how vendor registers map through the Canonical Data Model to target systems with automatic unit multiplier and timezone normalization.
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 uppercase font-semibold">
+                <th class="py-3 px-3">Canonical Attribute</th>
+                <th class="py-3 px-3">Standard / Units</th>
+                <th class="py-3 px-3">Alpha HES (DLMS)</th>
+                <th class="py-3 px-3">Beta HES (CSV)</th>
+                <th class="py-3 px-3">Gamma MDMS (CIM)</th>
+                <th class="py-3 px-3">Delta HES (Legacy)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 font-mono text-xs">
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-emerald-400">active_energy_import_kwh</td>
+                <td class="py-3 px-3 text-slate-300 font-sans">kWh (Cumulative)</td>
+                <td class="py-3 px-3 text-slate-200">1.0.1.8.0.255 (scale -3)</td>
+                <td class="py-3 px-3 text-slate-200">KWH_IMP (Float)</td>
+                <td class="py-3 px-3 text-slate-200">ActiveEnergy.Import</td>
+                <td class="py-3 px-3 text-slate-200">act_wh * 0.001</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-emerald-400">active_energy_export_kwh</td>
+                <td class="py-3 px-3 text-slate-300 font-sans">kWh (Net Metering)</td>
+                <td class="py-3 px-3 text-slate-200">1.0.2.8.0.255 (scale -3)</td>
+                <td class="py-3 px-3 text-slate-200">KWH_EXP (Float)</td>
+                <td class="py-3 px-3 text-slate-200">ActiveEnergy.Export</td>
+                <td class="py-3 px-3 text-slate-200">exp_wh * 0.001</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-emerald-400">voltage_v</td>
+                <td class="py-3 px-3 text-slate-300 font-sans">Volts RMS (Phase L1)</td>
+                <td class="py-3 px-3 text-slate-200">1.0.12.7.0.255 (scale -1)</td>
+                <td class="py-3 px-3 text-slate-200">VRMS (Float)</td>
+                <td class="py-3 px-3 text-slate-200">Voltage.RMS.V</td>
+                <td class="py-3 px-3 text-slate-200">volt_mv * 0.001</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-emerald-400">current_a</td>
+                <td class="py-3 px-3 text-slate-300 font-sans">Amperes RMS</td>
+                <td class="py-3 px-3 text-slate-200">1.0.11.7.0.255 (scale -2)</td>
+                <td class="py-3 px-3 text-slate-200">IRMS (Float)</td>
+                <td class="py-3 px-3 text-slate-200">Current.RMS.A</td>
+                <td class="py-3 px-3 text-slate-200">curr_ma * 0.001</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-emerald-400">power_factor</td>
+                <td class="py-3 px-3 text-slate-300 font-sans">cos φ (-1.0 to 1.0)</td>
+                <td class="py-3 px-3 text-slate-200">1.0.13.7.0.255</td>
+                <td class="py-3 px-3 text-slate-200">PF (Float)</td>
+                <td class="py-3 px-3 text-slate-200">ReadingType.PF</td>
+                <td class="py-3 px-3 text-slate-200">p_fact_pct * 0.01</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="py-3 px-3 font-bold text-emerald-400">timestamp</td>
+                <td class="py-3 px-3 text-slate-300 font-sans">ISO 8601 UTC</td>
+                <td class="py-3 px-3 text-slate-200">clock (ISO UTC)</td>
+                <td class="py-3 px-3 text-slate-200">RDG_TIME (IST +5:30)</td>
+                <td class="py-3 px-3 text-slate-200">timeStamp (ISO UTC)</td>
+                <td class="py-3 px-3 text-slate-200">ts_epoch_sec</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: VENDOR ADAPTERS MANAGEMENT -->
+    <section id="view-vendors" class="tab-view hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="vendor-cards-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 5: AUDIT HISTORY -->
+    <section id="view-history" class="tab-view hidden space-y-6">
+      <!-- Regression Comparison Tool -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+        <h3 class="text-base font-bold text-white mb-4 flex items-center space-x-2">
+          <i data-lucide="git-compare" class="w-4 h-4 text-amber-400"></i>
+          <span>Regression Comparison</span>
+        </h3>
+        <div class="flex items-end gap-4 mb-4">
+          <div class="flex-1">
+            <label class="block text-xs text-slate-400 mb-1">Baseline Run ID</label>
+            <input type="text" id="compare-run-a" placeholder="RUN-XXXXXXXXXX" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white font-mono">
+          </div>
+          <div class="flex-1">
+            <label class="block text-xs text-slate-400 mb-1">Candidate Run ID</label>
+            <input type="text" id="compare-run-b" placeholder="RUN-XXXXXXXXXX" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white font-mono">
+          </div>
+          <button onclick="runRegressionCompare()" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-sm font-semibold transition">
+            Compare Runs
+          </button>
+        </div>
+        <div id="regression-result" class="hidden bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs space-y-3">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+            <i data-lucide="history" class="w-5 h-5 text-brand-400"></i>
+            <span>Test Execution Audit Trail</span>
+          </h2>
+          <button onclick="loadHistoryRuns()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition flex items-center space-x-1.5">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+            <span>Reload Audit Records</span>
+          </button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400 uppercase font-semibold">
+                <th class="py-3 px-3">Run ID</th>
+                <th class="py-3 px-3">Timestamp</th>
+                <th class="py-3 px-3">Source Vendor</th>
+                <th class="py-3 px-3">Target Vendor</th>
+                <th class="py-3 px-3">Records Valid / Total</th>
+                <th class="py-3 px-3">Conformance</th>
+                <th class="py-3 px-3">Duration</th>
+                <th class="py-3 px-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="history-runs-body" class="divide-y divide-slate-800 font-mono">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: CONTRACTS EXPLORER -->
+    <section id="view-contracts" class="tab-view hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+              <i data-lucide="file-check" class="w-5 h-5 text-brand-400"></i>
+              <span>Adapter Contracts (Versioned Schemas)</span>
+            </h2>
+            <p class="text-xs text-slate-400">Inspectable, diffable contract declarations for each vendor adapter</p>
+          </div>
+          <button onclick="loadContracts()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg border border-slate-700 transition flex items-center space-x-1.5">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+            <span>Refresh</span>
+          </button>
+        </div>
+        <div id="contracts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Contract Diff Tool -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
+        <h3 class="text-base font-bold text-white mb-4 flex items-center space-x-2">
+          <i data-lucide="git-compare" class="w-4 h-4 text-purple-400"></i>
+          <span>Contract Diff Comparison</span>
+        </h3>
+        <div class="flex items-end gap-4 mb-4">
+          <div class="flex-1">
+            <label class="block text-xs text-slate-400 mb-1">Vendor A</label>
+            <select id="diff-vendor-a" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
+              <option value="alpha-hes">Alpha HES</option>
+              <option value="beta-hes">Beta HES</option>
+              <option value="gamma-mdms">Gamma MDMS</option>
+              <option value="delta-legacy">Delta Legacy</option>
+            </select>
+          </div>
+          <div class="flex-1">
+            <label class="block text-xs text-slate-400 mb-1">Vendor B</label>
+            <select id="diff-vendor-b" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
+              <option value="delta-legacy">Delta Legacy</option>
+              <option value="alpha-hes">Alpha HES</option>
+              <option value="beta-hes">Beta HES</option>
+              <option value="gamma-mdms">Gamma MDMS</option>
+            </select>
+          </div>
+          <button onclick="runContractDiff()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-sm font-semibold transition">
+            Compare
+          </button>
+        </div>
+        <div id="diff-result" class="hidden bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs space-y-3">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 7: STANDARDS REFERENCE -->
+    <section id="view-standards" class="tab-view hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm space-y-6">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center space-x-2">
+            <i data-lucide="book-open" class="w-5 h-5 text-purple-400"></i>
+            <span>AMI Standards & OBIS Identification System Reference</span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">Official OBIS code registrations under IS 15959 (Parts 1-3) and IEC 62056-6-1 for smart meter interoperability.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-3">
+            <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+              <i data-lucide="bookmark" class="w-4 h-4 text-brand-400"></i>
+              <span>IS 15959 Companion Specification</span>
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Mandated by CEA (Central Electricity Authority) and BIS for all Indian smart meter rollouts under the Revamped Distribution Sector Scheme (RDSS). It standardizes the data model, object definitions, and load survey capture periods (15/30 min).
+            </p>
+            <div class="text-xs text-slate-400 space-y-1">
+              <div>• <strong>Part 1:</strong> AC Static Direct Connected Meters (up to 60A / 100A)</div>
+              <div>• <strong>Part 2:</strong> Transformer-Operated Static Watt-hour and Var-hour Meters</div>
+              <div>• <strong>Part 3:</strong> High Voltage Boundary and Feeder Metering</div>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-3">
+            <h3 class="text-sm font-bold text-white flex items-center space-x-2">
+              <i data-lucide="layers" class="w-4 h-4 text-blue-400"></i>
+              <span>IEC 61968-9 (CIM for Distribution)</span>
+            </h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Defines the vendor-neutral message schemas for utility back-office enterprise integration. Translates meter measurements into canonical <code>MeterReadings</code> and grid alarms into standardized <code>EndDeviceEvents</code>.
+            </p>
+            <div class="text-xs text-slate-400 space-y-1">
+              <div>• <strong>ReadingQuality:</strong> Valid, Missing, Estimated, Suspect</div>
+              <div>• <strong>EndDeviceEvent:</strong> Standard tamper, power quality, and outage codes</div>
+              <div>• <strong>IntervalBlocks:</strong> Time-series telemetry payloads</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center">
+        <h3 id="modal-title" class="text-base font-bold text-white">Test Run Audit Detail</h3>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="modal-content" class="p-6 overflow-y-auto space-y-4 text-xs font-mono">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+{
+  "Header": {
+    "verb": "reply",
+    "noun": "MeterReadings",
+    "timestamp": "2026-11-11T17:20:20.241926+00:00",
+    "source": "VidyutSetu-CIM-Adapter",
+    "standard": "IEC 61968-9 Ed 2"
+  },
+  "Payload": {
+    "MeterReadingsMessage": {
+      "MeterReadings": [
+        {
+          "EndDevice": {
+            "mRID": "SM-KA-0001"
+          },
+          "IntervalBlocks": [
+            {
+              "readingType": "IEC61968-9.ActiveEnergy.Import.kWh",
+              "IntervalReadings": [
+                {
+                  "timeStamp": "2026-11-11T16:20:20.240073+00:00",
+                  "value": 2600.1822,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:35:20.240073+00:00",
+                  "value": 2600.3889,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:50:20.240073+00:00",
+                  "value": 2600.6249,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T17:05:20.240073+00:00",
+                  "value": 2600.8745,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "readingType": "IEC61968-9.Voltage.RMS.V",
+              "IntervalReadings": [
+                {
+                  "timeStamp": "2026-11-11T16:20:20.240073+00:00",
+                  "value": 232.58,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:35:20.240073+00:00",
+                  "value": 234.15,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:50:20.240073+00:00",
+                  "value": 226.61,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T17:05:20.240073+00:00",
+                  "value": 230.31,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "readingType": "IEC61968-9.Current.RMS.A",
+              "IntervalReadings": [
+                {
+                  "timeStamp": "2026-11-11T16:20:20.240073+00:00",
+                  "value": 3.415,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:35:20.240073+00:00",
+                  "value": 3.858,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:50:20.240073+00:00",
+                  "value": 4.296,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T17:05:20.240073+00:00",
+                  "value": 4.562,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "EndDevice": {
+            "mRID": "SM-KA-0002"
+          },
+          "IntervalBlocks": [
+            {
+              "readingType": "IEC61968-9.ActiveEnergy.Import.kWh",
+              "IntervalReadings": [
+                {
+                  "timeStamp": "2026-11-11T16:20:20.240073+00:00",
+                  "value": 2750.1955,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:35:20.240073+00:00",
+                  "value": 2750.3915,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:50:20.240073+00:00",
+                  "value": 2750.6232,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T17:05:20.240073+00:00",
+                  "value": 2750.8906,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "readingType": "IEC61968-9.Voltage.RMS.V",
+              "IntervalReadings": [
+                {
+                  "timeStamp": "2026-11-11T16:20:20.240073+00:00",
+                  "value": 233.48,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:35:20.240073+00:00",
+                  "value": 227.62,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:50:20.240073+00:00",
+                  "value": 231.5,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T17:05:20.240073+00:00",
+                  "value": 234.47,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "readingType": "IEC61968-9.Current.RMS.A",
+              "IntervalReadings": [
+                {
+                  "timeStamp": "2026-11-11T16:20:20.240073+00:00",
+                  "value": 3.597,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:35:20.240073+00:00",
+                  "value": 3.657,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T16:50:20.240073+00:00",
+                  "value": 4.339,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                },
+                {
+                  "timeStamp": "2026-11-11T17:05:20.240073+00:00",
+                  "value": 4.747,
+                  "ReadingQualities": [
+                    {
+                      "quality": "VALID"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "EndDeviceEvents": []
+    }
+  }
+}
