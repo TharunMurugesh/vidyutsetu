@@ -52,27 +52,27 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             key={t.id}
             className={`pointer-events-auto flex items-start gap-3 p-3.5 rounded-xl border shadow-xl backdrop-blur-md transition-all duration-300 transform translate-y-0 opacity-100 ${
               t.type === 'success'
-                ? 'bg-slate-900/95 border-emerald-500/40 text-emerald-300 shadow-emerald-950/20'
+                ? 'bg-white dark:bg-slate-900/95 border-emerald-500/40 text-emerald-800 dark:text-emerald-300 shadow-emerald-950/20'
                 : t.type === 'error'
-                ? 'bg-slate-900/95 border-rose-500/40 text-rose-300 shadow-rose-950/20'
+                ? 'bg-white dark:bg-slate-900/95 border-rose-500/40 text-rose-800 dark:text-rose-300 shadow-rose-950/20'
                 : t.type === 'warning'
-                ? 'bg-slate-900/95 border-amber-500/40 text-amber-300 shadow-amber-950/20'
-                : 'bg-slate-900/95 border-blue-500/40 text-blue-300 shadow-blue-950/20'
+                ? 'bg-white dark:bg-slate-900/95 border-amber-500/40 text-amber-800 dark:text-amber-300 shadow-amber-950/20'
+                : 'bg-white dark:bg-slate-900/95 border-blue-500/40 text-blue-800 dark:text-blue-300 shadow-blue-950/20'
             }`}
           >
             <div className="mt-0.5 shrink-0">
-              {t.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-400" />}
-              {t.type === 'error' && <AlertCircle className="w-5 h-5 text-rose-400" />}
-              {t.type === 'warning' && <AlertTriangle className="w-5 h-5 text-amber-400" />}
-              {t.type === 'info' && <Info className="w-5 h-5 text-blue-400" />}
+              {t.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-500 dark:text-emerald-400" />}
+              {t.type === 'error' && <AlertCircle className="w-5 h-5 text-rose-500 dark:text-rose-400" />}
+              {t.type === 'warning' && <AlertTriangle className="w-5 h-5 text-amber-500 dark:text-amber-400" />}
+              {t.type === 'info' && <Info className="w-5 h-5 text-blue-500 dark:text-blue-400" />}
             </div>
             <div className="flex-1 text-xs">
-              <p className="font-semibold text-slate-100">{t.title}</p>
-              {t.message && <p className="text-slate-400 mt-0.5 leading-relaxed">{t.message}</p>}
+              <p className="font-semibold text-slate-900 dark:text-slate-100">{t.title}</p>
+              {t.message && <p className="text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">{t.message}</p>}
             </div>
             <button
               onClick={() => removeToast(t.id)}
-              className="text-slate-400 hover:text-white p-1 rounded-md transition-colors"
+              className="text-slate-400 hover:text-slate-700 dark:hover:text-white p-1 rounded-md transition-colors"
             >
               <X className="w-4 h-4" />
             </button>

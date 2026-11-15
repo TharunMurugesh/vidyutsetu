@@ -3,7 +3,7 @@ import { Cpu, ArrowRight, Layers, FileCode, CheckCircle2, RefreshCw } from 'luci
 import { api } from '../../services/api';
 import { VendorProfile } from '../../types/api';
 import { useToast } from '../../context/ToastContext';
-import { TabKey } from '../Header';
+import { TabKey } from '../Sidebar';
 
 interface VendorsTabProps {
   onNavigate: (tab: TabKey, params?: any) => void;
@@ -33,22 +33,22 @@ export const VendorsTab: React.FC<VendorsTabProps> = ({ onNavigate }) => {
   return (
     <div className="space-y-6 fade-in pb-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
         <div>
-          <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <span>Vendor Adapters Catalog</span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-400 border border-purple-500/20">
+            <span className="text-xs font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-700 dark:text-purple-400 border border-purple-500/20">
               Registered Connectors
             </span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Pluggable protocol adapters for Head-End Systems (HES) and Meter Data Management Systems (MDMS).
           </p>
         </div>
         <button
           onClick={loadVendors}
           disabled={loading}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700/60 transition cursor-pointer"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700/60 shadow-xs transition cursor-pointer"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
           <span>Refresh Adapters</span>
@@ -64,43 +64,43 @@ export const VendorsTab: React.FC<VendorsTabProps> = ({ onNavigate }) => {
           return (
             <div
               key={v.vendor_id}
-              className="bg-[#111827] border border-slate-800/90 rounded-2xl p-6 shadow-sm space-y-4 flex flex-col justify-between hover:border-slate-700 transition-colors"
+              className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-6 shadow-xs space-y-4 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
             >
               <div className="space-y-3">
                 <div className="flex items-start justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold tracking-wider uppercase bg-purple-500/10 text-purple-700 dark:text-purple-400 border border-purple-500/20">
                         {v.system_type}
                       </span>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-slate-800 text-slate-300">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                         {v.format_type}
                       </span>
                     </div>
-                    <h2 className="text-base font-bold text-white mt-1.5">{v.name}</h2>
+                    <h2 className="text-base font-bold text-slate-900 dark:text-white mt-1.5">{v.name}</h2>
                     <p className="text-[11px] text-slate-500 font-mono">
                       ID: {v.vendor_id} · v{v.version}
                     </p>
                   </div>
-                  <div className="w-10 h-10 rounded-xl bg-[#0B0F17] border border-slate-800 flex items-center justify-center">
-                    <Cpu className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-[#0B0F17] border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-colors">
+                    <Cpu className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-300 leading-relaxed">{v.description}</p>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{v.description}</p>
 
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="bg-[#0B0F17] p-2.5 rounded-lg border border-slate-800">
+                  <div className="bg-slate-50 dark:bg-[#0B0F17] p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors">
                     <span className="text-[10px] text-slate-500 uppercase font-semibold block">
                       Protocol
                     </span>
-                    <span className="font-mono text-slate-200 text-[11px]">{v.protocol}</span>
+                    <span className="font-mono text-slate-800 dark:text-slate-200 text-[11px]">{v.protocol}</span>
                   </div>
-                  <div className="bg-[#0B0F17] p-2.5 rounded-lg border border-slate-800">
+                  <div className="bg-slate-50 dark:bg-[#0B0F17] p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 transition-colors">
                     <span className="text-[10px] text-slate-500 uppercase font-semibold block">
                       Mappings
                     </span>
-                    <span className="font-mono text-slate-200 text-[11px]">
+                    <span className="font-mono text-slate-800 dark:text-slate-200 text-[11px]">
                       {obisCount} OBIS / {eventCount} Events
                     </span>
                   </div>
@@ -108,14 +108,14 @@ export const VendorsTab: React.FC<VendorsTabProps> = ({ onNavigate }) => {
 
                 {obisCount > 0 && (
                   <div>
-                    <span className="text-[11px] font-semibold text-slate-400">
+                    <span className="text-[11px] font-semibold text-slate-600 dark:text-slate-400">
                       Standard OBIS Registers:
                     </span>
                     <div className="flex flex-wrap gap-1 mt-1.5 max-h-20 overflow-y-auto">
                       {Object.keys(v.obis_code_mappings).slice(0, 6).map((code) => (
                         <span
                           key={code}
-                          className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                          className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20"
                         >
                           {code}
                         </span>
@@ -130,7 +130,7 @@ export const VendorsTab: React.FC<VendorsTabProps> = ({ onNavigate }) => {
                 )}
               </div>
 
-              <div className="pt-4 border-t border-slate-800 flex items-center justify-end">
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end">
                 <button
                   onClick={() =>
                     onNavigate('workbench', {
@@ -139,7 +139,7 @@ export const VendorsTab: React.FC<VendorsTabProps> = ({ onNavigate }) => {
                       autoRun: true,
                     })
                   }
-                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600/90 hover:bg-emerald-600 text-white transition shadow-sm cursor-pointer"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-xs cursor-pointer"
                 >
                   <span>Test in Workbench</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -152,4 +152,3 @@ export const VendorsTab: React.FC<VendorsTabProps> = ({ onNavigate }) => {
     </div>
   );
 };
-

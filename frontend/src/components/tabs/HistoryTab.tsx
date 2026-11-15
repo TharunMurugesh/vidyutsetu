@@ -110,25 +110,25 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
     switch (status) {
       case 'PASS':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
             PASS
           </span>
         );
       case 'CONDITIONAL':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
             CONDITIONAL
           </span>
         );
       case 'FAIL':
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20">
             FAIL
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-500/10 text-slate-400 border border-slate-500/20">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-500/10 text-slate-700 dark:text-slate-400 border border-slate-500/20">
             INCOMPLETE
           </span>
         );
@@ -151,22 +151,22 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
   return (
     <div className="space-y-6 fade-in pb-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
         <div>
-          <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <span>Audit History & Regression Comparator</span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">
+            <span className="text-xs font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20">
               Audit Logs & Diff
             </span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Historical validation trace with assertion-level regression detection between test builds.
           </p>
         </div>
         <button
           onClick={loadRuns}
           disabled={loading}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700/60 transition cursor-pointer"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700/60 shadow-xs transition cursor-pointer"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
           <span>Refresh Runs</span>
@@ -174,20 +174,20 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
       </div>
 
       {/* Regression & Improvement Comparator Card */}
-      <div className="bg-[#111827] border border-slate-800/90 rounded-2xl p-5 shadow-sm space-y-4">
+      <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-5 shadow-xs space-y-4 transition-colors">
         <div className="flex items-center gap-2">
-          <GitCompare className="w-4 h-4 text-emerald-400" />
-          <h2 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
+          <GitCompare className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+          <h2 className="text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider">
             Automated Regression / Improvement Comparator
           </h2>
         </div>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-500 dark:text-slate-400">
           Compare any two test runs to verify bug fixes, identify newly introduced contract breaches, and track assertion progression.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
           <div className="sm:col-span-5">
-            <label className="block text-[11px] text-slate-400 font-medium mb-1">
+            <label className="block text-[11px] text-slate-500 dark:text-slate-400 font-medium mb-1">
               Baseline Run ID (Reference)
             </label>
             <input
@@ -195,12 +195,12 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
               placeholder="e.g. RUN-A1B2C3D4E5"
               value={baselineRunId}
               onChange={(e) => setBaselineRunId(e.target.value)}
-              className="w-full bg-[#0B0F17] border border-slate-700/80 rounded-lg px-3 py-2 text-xs font-mono text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
+              className="w-full bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-3 py-2 text-xs font-mono text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
             />
           </div>
 
           <div className="sm:col-span-5">
-            <label className="block text-[11px] text-slate-400 font-medium mb-1">
+            <label className="block text-[11px] text-slate-500 dark:text-slate-400 font-medium mb-1">
               Candidate Run ID (Under Test)
             </label>
             <input
@@ -208,7 +208,7 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
               placeholder="e.g. RUN-F6G7H8I9J0"
               value={candidateRunId}
               onChange={(e) => setCandidateRunId(e.target.value)}
-              className="w-full bg-[#0B0F17] border border-slate-700/80 rounded-lg px-3 py-2 text-xs font-mono text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500"
+              className="w-full bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-3 py-2 text-xs font-mono text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none focus:border-emerald-500 transition-colors"
             />
           </div>
 
@@ -226,12 +226,12 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
 
         {/* Comparison Result Display */}
         {comparisonResult && (
-          <div className="pt-4 border-t border-slate-800 space-y-4 fade-in">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0B0F17] p-4 rounded-xl border border-slate-800">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-4 fade-in">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50 dark:bg-[#0B0F17] p-4 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
               <div className="flex items-center gap-4">
                 <div className="text-xs">
                   <span className="text-slate-500 block text-[10px]">Baseline</span>
-                  <span className="font-mono text-white font-bold">
+                  <span className="font-mono text-slate-900 dark:text-white font-bold">
                     {comparisonResult.baseline.run_id}
                   </span>
                   <div className="mt-1">
@@ -239,11 +239,11 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                   </div>
                 </div>
 
-                <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" />
+                <ArrowRight className="w-4 h-4 text-slate-400 shrink-0" />
 
                 <div className="text-xs">
                   <span className="text-slate-500 block text-[10px]">Candidate</span>
-                  <span className="font-mono text-white font-bold">
+                  <span className="font-mono text-slate-900 dark:text-white font-bold">
                     {comparisonResult.candidate.run_id}
                   </span>
                   <div className="mt-1">
@@ -254,17 +254,17 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
 
               <div>
                 {comparisonResult.regression_detected ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-rose-500/15 text-rose-400 border border-rose-500/30">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-rose-500/15 text-rose-700 dark:text-rose-400 border border-rose-500/30">
                     <TrendingDown className="w-4 h-4" />
                     REGRESSION DETECTED
                   </span>
                 ) : comparisonResult.improvement_detected ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
                     <TrendingUp className="w-4 h-4" />
                     IMPROVEMENT DETECTED
                   </span>
                 ) : (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
                     NO STATUS DRIFT
                   </span>
                 )}
@@ -273,8 +273,8 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
 
             {/* Assertion Deltas 3-Column Box */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="bg-emerald-950/20 border border-emerald-900/40 p-4 rounded-xl space-y-2">
-                <span className="text-xs font-bold text-emerald-400 block">
+              <div className="bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/40 p-4 rounded-xl space-y-2 transition-colors">
+                <span className="text-xs font-bold text-emerald-800 dark:text-emerald-400 block">
                   Resolved Issues ({comparisonResult.summary.resolved_count})
                 </span>
                 <div className="space-y-1 max-h-32 overflow-y-auto">
@@ -282,7 +282,7 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                     comparisonResult.resolved_issues.map((iss, i) => (
                       <div
                         key={i}
-                        className="text-[11px] font-mono text-emerald-300 bg-emerald-950/40 px-2 py-0.5 rounded"
+                        className="text-[11px] font-mono text-emerald-800 dark:text-emerald-300 bg-emerald-100/60 dark:bg-emerald-950/40 px-2 py-0.5 rounded"
                       >
                         {iss.code} [{iss.field}]
                       </div>
@@ -293,8 +293,8 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                 </div>
               </div>
 
-              <div className="bg-rose-950/20 border border-rose-900/40 p-4 rounded-xl space-y-2">
-                <span className="text-xs font-bold text-rose-400 block">
+              <div className="bg-rose-50/50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-900/40 p-4 rounded-xl space-y-2 transition-colors">
+                <span className="text-xs font-bold text-rose-800 dark:text-rose-400 block">
                   New Issues ({comparisonResult.summary.new_count})
                 </span>
                 <div className="space-y-1 max-h-32 overflow-y-auto">
@@ -302,7 +302,7 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                     comparisonResult.new_issues.map((iss, i) => (
                       <div
                         key={i}
-                        className="text-[11px] font-mono text-rose-300 bg-rose-950/40 px-2 py-0.5 rounded"
+                        className="text-[11px] font-mono text-rose-800 dark:text-rose-300 bg-rose-100/60 dark:bg-rose-950/40 px-2 py-0.5 rounded"
                       >
                         {iss.code} [{iss.field}]
                       </div>
@@ -313,8 +313,8 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                 </div>
               </div>
 
-              <div className="bg-[#0B0F17] border border-slate-800 p-4 rounded-xl space-y-2">
-                <span className="text-xs font-bold text-slate-400 block">
+              <div className="bg-slate-50 dark:bg-[#0B0F17] border border-slate-200 dark:border-slate-800 p-4 rounded-xl space-y-2 transition-colors">
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-400 block">
                   Persistent Issues ({comparisonResult.summary.persistent_count})
                 </span>
                 <div className="space-y-1 max-h-32 overflow-y-auto">
@@ -322,7 +322,7 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                     comparisonResult.persistent_issues.map((iss, i) => (
                       <div
                         key={i}
-                        className="text-[11px] font-mono text-slate-300 bg-slate-900 px-2 py-0.5 rounded"
+                        className="text-[11px] font-mono text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-900 px-2 py-0.5 rounded"
                       >
                         {iss.code} [{iss.field}]
                       </div>
@@ -338,11 +338,11 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
       </div>
 
       {/* History Log Table */}
-      <div className="bg-[#111827] border border-slate-800/90 rounded-2xl overflow-hidden shadow-sm">
-        <div className="p-4 sm:p-5 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl overflow-hidden shadow-xs transition-colors">
+        <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <h2 className="text-sm font-bold text-white flex items-center gap-2">
-              <History className="w-4 h-4 text-emerald-400" />
+            <h2 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <History className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               <span>Recorded Validation Runs</span>
             </h2>
             <span className="text-xs font-mono text-slate-500">
@@ -352,20 +352,20 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
 
           <div className="flex flex-wrap items-center gap-2">
             <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-2.5" />
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
               <input
                 type="text"
                 placeholder="Search run ID or vendor..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-[#0B0F17] border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 w-48"
+                className="bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 w-48 transition-colors"
               />
             </div>
 
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-[#0B0F17] border border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-slate-300 focus:outline-none cursor-pointer"
+              className="bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 dark:text-slate-300 focus:outline-none cursor-pointer transition-colors"
             >
               <option value="ALL">All Statuses</option>
               <option value="PASS">PASS Only</option>
@@ -378,7 +378,7 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
-            <thead className="bg-[#0B0F17]/60 text-slate-400 font-semibold border-b border-slate-800">
+            <thead className="bg-slate-50 dark:bg-[#0B0F17]/60 text-slate-600 dark:text-slate-400 font-semibold border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="py-3 px-4">Run ID</th>
                 <th className="py-3 px-4">Timestamp</th>
@@ -390,11 +390,11 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-sans">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 font-sans">
               {filteredRuns.length > 0 ? (
                 filteredRuns.map((r) => (
-                  <tr key={r.run_id} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="py-3 px-4 font-mono font-semibold text-emerald-400">
+                  <tr key={r.run_id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                    <td className="py-3 px-4 font-mono font-semibold text-emerald-600 dark:text-emerald-400">
                       <div className="flex items-center gap-1.5">
                         <span>{r.run_id}</span>
                         <button
@@ -402,28 +402,28 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                             navigator.clipboard.writeText(r.run_id);
                             success('Copied', 'Run ID copied');
                           }}
-                          className="text-slate-500 hover:text-slate-300 p-0.5 cursor-pointer"
+                          className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 p-0.5 cursor-pointer"
                         >
                           <Copy className="w-3 h-3" />
                         </button>
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-slate-300">
+                    <td className="py-3 px-4 text-slate-600 dark:text-slate-300">
                       {r.execution_time ? new Date(r.execution_time).toLocaleString() : 'N/A'}
                     </td>
-                    <td className="py-3 px-4 font-mono text-slate-200">{r.source_vendor}</td>
-                    <td className="py-3 px-4 font-mono text-slate-400">
+                    <td className="py-3 px-4 font-mono text-slate-800 dark:text-slate-200">{r.source_vendor}</td>
+                    <td className="py-3 px-4 font-mono text-slate-500 dark:text-slate-400">
                       {r.target_vendor || 'Validation'}
                     </td>
-                    <td className="py-3 px-4 text-slate-300 font-mono">
+                    <td className="py-3 px-4 text-slate-700 dark:text-slate-300 font-mono">
                       {r.valid_records ?? r.total_records} / {r.total_records}
                     </td>
                     <td className="py-3 px-4">{getStatusBadge(r.conformance_status)}</td>
-                    <td className="py-3 px-4 font-mono text-slate-400">{r.duration_ms} ms</td>
+                    <td className="py-3 px-4 font-mono text-slate-500 dark:text-slate-400">{r.duration_ms} ms</td>
                     <td className="py-3 px-4 text-right">
                       <button
                         onClick={() => handleInspect(r.run_id)}
-                        className="text-emerald-400 hover:text-emerald-300 font-semibold hover:underline cursor-pointer"
+                        className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold hover:underline cursor-pointer"
                       >
                         Inspect
                       </button>
@@ -444,38 +444,38 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
 
       {/* Audit Detail Modal */}
       {selectedRun && (
-        <div className="fixed inset-0 z-50 bg-[#0B0F17]/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-[#111827] border border-slate-800 rounded-2xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden fade-in">
-            <div className="p-5 border-b border-slate-800 flex items-center justify-between">
+        <div className="fixed inset-0 z-50 bg-slate-900/60 dark:bg-[#0B0F17]/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800 rounded-2xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden fade-in transition-colors">
+            <div className="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
               <div>
-                <h3 className="text-base font-bold text-white flex items-center gap-2">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   <span>Run Audit Detail:</span>
-                  <span className="font-mono text-emerald-400">{selectedRun.run_id}</span>
+                  <span className="font-mono text-emerald-600 dark:text-emerald-400">{selectedRun.run_id}</span>
                 </h3>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                   Executed at {new Date(selectedRun.execution_time).toLocaleString()} · Duration:{' '}
                   {selectedRun.duration_ms} ms
                 </p>
               </div>
               <button
                 onClick={() => setSelectedRun(null)}
-                className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-white p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="p-6 overflow-y-auto space-y-5 text-xs">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-[#0B0F17] p-4 rounded-xl border border-slate-800">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 dark:bg-[#0B0F17] p-4 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
                 <div>
                   <span className="text-[10px] text-slate-500 uppercase block">Source System</span>
-                  <span className="font-mono text-slate-200 font-bold">
+                  <span className="font-mono text-slate-900 dark:text-slate-200 font-bold">
                     {selectedRun.source_vendor}
                   </span>
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-500 uppercase block">Target System</span>
-                  <span className="font-mono text-slate-200 font-bold">
+                  <span className="font-mono text-slate-900 dark:text-slate-200 font-bold">
                     {selectedRun.target_vendor || 'Canonical Only'}
                   </span>
                 </div>
@@ -487,7 +487,7 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-500 uppercase block">Records</span>
-                  <span className="font-mono text-slate-200 font-bold">
+                  <span className="font-mono text-slate-900 dark:text-slate-200 font-bold">
                     {selectedRun.valid_records} / {selectedRun.total_records}
                   </span>
                 </div>
@@ -495,7 +495,7 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
 
               {/* Diagnostic Issues in Modal */}
               <div>
-                <h4 className="font-bold text-slate-200 mb-2">
+                <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-2">
                   Diagnostic Issues ({selectedRun.issues?.length || 0}):
                 </h4>
                 <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
@@ -503,32 +503,32 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
                     selectedRun.issues.map((iss: any, i: number) => (
                       <div
                         key={i}
-                        className="p-3 rounded-lg bg-[#0B0F17] border border-slate-800 text-xs space-y-1"
+                        className="p-3 rounded-lg bg-slate-50 dark:bg-[#0B0F17] border border-slate-200 dark:border-slate-800 text-xs space-y-1 transition-colors"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="font-mono text-rose-400 font-bold">
+                          <span className="font-mono text-rose-600 dark:text-rose-400 font-bold">
                             [{iss.severity}] {iss.code}
                           </span>
                           <span className="font-mono text-slate-500">{iss.field}</span>
                         </div>
-                        <p className="text-slate-300">{iss.message}</p>
+                        <p className="text-slate-700 dark:text-slate-300">{iss.message}</p>
                         {iss.suggested_fix && (
-                          <div className="text-[11px] text-emerald-400 bg-emerald-950/20 p-2 rounded mt-1">
+                          <div className="text-[11px] text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 p-2 rounded mt-1">
                             Fix: {iss.suggested_fix}
                           </div>
                         )}
                       </div>
                     ))
                   ) : (
-                    <div className="text-emerald-400">Zero issues detected.</div>
+                    <div className="text-emerald-600 dark:text-emerald-400">Zero issues detected.</div>
                   )}
                 </div>
               </div>
 
               {/* Raw Preview in Modal */}
               <div>
-                <h4 className="font-bold text-slate-200 mb-2">Raw Payload Snapshot:</h4>
-                <pre className="p-3 bg-[#0B0F17] rounded-xl border border-slate-800 font-mono text-[11px] text-slate-300 max-h-40 overflow-x-auto">
+                <h4 className="font-bold text-slate-800 dark:text-slate-200 mb-2">Raw Payload Snapshot:</h4>
+                <pre className="p-3 bg-slate-900 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-200 max-h-40 overflow-x-auto">
                   {selectedRun.raw_preview || '// None'}
                 </pre>
               </div>
@@ -539,4 +539,3 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
     </div>
   );
 };
-

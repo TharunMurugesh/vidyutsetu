@@ -159,28 +159,28 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
     switch (status) {
       case 'PASS':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-sm font-extrabold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-sm font-extrabold bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
             <CheckCircle2 className="w-4 h-4" />
             PASS
           </span>
         );
       case 'CONDITIONAL':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-sm font-extrabold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-sm font-extrabold bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/30">
             <AlertTriangle className="w-4 h-4" />
             CONDITIONAL
           </span>
         );
       case 'FAIL':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-sm font-extrabold bg-rose-500/10 text-rose-400 border border-rose-500/30">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-sm font-extrabold bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/30">
             <XCircle className="w-4 h-4" />
             FAIL
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-sm font-extrabold bg-slate-500/10 text-slate-400 border border-slate-500/30">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-sm font-extrabold bg-slate-500/10 text-slate-700 dark:text-slate-400 border border-slate-500/30">
             <HelpCircle className="w-4 h-4" />
             INCOMPLETE
           </span>
@@ -197,15 +197,15 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
   return (
     <div className="space-y-6 fade-in pb-12">
       {/* Workbench Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
         <div>
-          <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <span>Interoperability Testing Workbench</span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
               Contract & Conformance Engine
             </span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Validate physical grid plausibility, OBIS register conformance, and auto-remediate transformation anomalies.
           </p>
         </div>
@@ -216,15 +216,15 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
         {/* Left Control Panel */}
         <div className="lg:col-span-5 space-y-4">
           {/* Vendor Format Selectors */}
-          <div className="bg-[#111827] border border-slate-800/90 rounded-xl p-5 shadow-sm space-y-4">
-            <h2 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-emerald-400" />
+          <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-5 shadow-xs space-y-4 transition-colors">
+            <h2 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
+              <Cpu className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               <span>1. System Adapters Selection</span>
             </h2>
 
             <div className="space-y-3">
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Source Vendor System (Ingestion)
                 </label>
                 <select
@@ -234,7 +234,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                     setSourceVendor(newSource);
                     handleGenerateSynthetic(newSource);
                   }}
-                  className="w-full bg-[#0B0F17] border border-slate-700/80 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition cursor-pointer"
+                  className="w-full bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 transition cursor-pointer"
                 >
                   <option value="alpha-hes">Alpha HES (DLMS/COSEM JSON - IS 15959)</option>
                   <option value="beta-hes">Beta HES (Columnar CSV Format)</option>
@@ -244,13 +244,13 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">
+                <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                   Target Destination System (Serialization)
                 </label>
                 <select
                   value={targetVendor}
                   onChange={(e) => setTargetVendor(e.target.value)}
-                  className="w-full bg-[#0B0F17] border border-slate-700/80 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 transition cursor-pointer"
+                  className="w-full bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 transition cursor-pointer"
                 >
                   <option value="none">None (Canonical Validation Only)</option>
                   <option value="gamma-mdms">Gamma MDMS (IEC 61968-9 CIM JSON)</option>
@@ -263,15 +263,15 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
           </div>
 
           {/* Synthetic Data Generator Panel */}
-          <div className="bg-[#111827] border border-slate-800/90 rounded-xl p-5 shadow-sm space-y-4">
+          <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-5 shadow-xs space-y-4 transition-colors">
             <div className="flex items-center justify-between">
-              <h2 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-amber-400" />
+              <h2 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                 <span>2. Synthetic Test Scenario Generator</span>
               </h2>
               <button
                 onClick={() => setShowGenPanel(!showGenPanel)}
-                className="text-slate-400 hover:text-white p-1 rounded cursor-pointer"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-white p-1 rounded cursor-pointer"
               >
                 {showGenPanel ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </button>
@@ -281,53 +281,53 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
               <div className="space-y-4 pt-1">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[11px] text-slate-400 mb-1">Meters Count</label>
+                    <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Meters Count</label>
                     <input
                       type="number"
                       min={1}
                       max={20}
                       value={meterCount}
                       onChange={(e) => setMeterCount(parseInt(e.target.value) || 1)}
-                      className="w-full bg-[#0B0F17] border border-slate-700/80 rounded-lg px-3 py-1.5 text-xs text-white font-mono"
+                      className="w-full bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white font-mono"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] text-slate-400 mb-1">Intervals / Meter</label>
+                    <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">Intervals / Meter</label>
                     <input
                       type="number"
                       min={1}
                       max={48}
                       value={intervals}
                       onChange={(e) => setIntervals(parseInt(e.target.value) || 1)}
-                      className="w-full bg-[#0B0F17] border border-slate-700/80 rounded-lg px-3 py-1.5 text-xs text-white font-mono"
+                      className="w-full bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white font-mono"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                  <label className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={injectAnomalies}
                       onChange={(e) => setInjectAnomalies(e.target.checked)}
-                      className="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0 cursor-pointer"
+                      className="rounded bg-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700 text-amber-500 focus:ring-0 cursor-pointer"
                     />
                     <span>Inject Grid Physical Faults (Negative kWh, Voltage OOB)</span>
                   </label>
 
-                  <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                  <label className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={injectTampers}
                       onChange={(e) => setInjectTampers(e.target.checked)}
-                      className="rounded bg-slate-900 border-slate-700 text-amber-500 focus:ring-0 cursor-pointer"
+                      className="rounded bg-slate-100 dark:bg-slate-900 border-slate-300 dark:border-slate-700 text-amber-500 focus:ring-0 cursor-pointer"
                     />
                     <span>Inject Tamper Events (Cover Open, Magnet Alarm)</span>
                   </label>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] text-slate-400 mb-1">
+                  <label className="block text-[11px] text-slate-500 dark:text-slate-400 mb-1">
                     RNG Reproducibility Seed (Optional)
                   </label>
                   <input
@@ -335,7 +335,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                     placeholder="e.g. 42"
                     value={seed}
                     onChange={(e) => setSeed(e.target.value)}
-                    className="w-full bg-[#0B0F17] border border-slate-700/80 rounded-lg px-3 py-1.5 text-xs text-white font-mono placeholder:text-slate-600"
+                    className="w-full bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-3 py-1.5 text-xs text-slate-900 dark:text-white font-mono placeholder:text-slate-400 dark:placeholder:text-slate-600"
                   />
                 </div>
 
@@ -343,9 +343,9 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                   <button
                     onClick={() => handleGenerateSynthetic()}
                     disabled={generating}
-                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/60 transition cursor-pointer disabled:opacity-50"
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700/60 transition cursor-pointer disabled:opacity-50"
                   >
-                    <Sparkles className={`w-3.5 h-3.5 text-amber-400 ${generating ? 'animate-spin' : ''}`} />
+                    <Sparkles className={`w-3.5 h-3.5 text-amber-500 dark:text-amber-400 ${generating ? 'animate-spin' : ''}`} />
                     <span>Generate Scenario</span>
                   </button>
                 </div>
@@ -356,18 +356,18 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
 
         {/* Right Editor & Action Panel */}
         <div className="lg:col-span-7 flex flex-col space-y-4">
-          <div className="bg-[#111827] border border-slate-800/90 rounded-xl p-5 shadow-sm flex-1 flex flex-col">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
+          <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-5 shadow-xs flex-1 flex flex-col transition-colors">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800/80">
               <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-emerald-400" />
-                <h2 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <h2 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                   3. Telemetry Payload Buffer
                 </h2>
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={formatPayload}
-                  className="px-2.5 py-1 rounded text-[11px] font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition cursor-pointer"
+                  className="px-2.5 py-1 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition cursor-pointer"
                   title="Format JSON"
                 >
                   Format
@@ -377,14 +377,14 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                     navigator.clipboard.writeText(payloadText);
                     success('Copied', 'Payload copied to clipboard');
                   }}
-                  className="px-2.5 py-1 rounded text-[11px] font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 transition cursor-pointer flex items-center gap-1"
+                  className="px-2.5 py-1 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition cursor-pointer flex items-center gap-1"
                 >
                   <Copy className="w-3 h-3" />
                   <span>Copy</span>
                 </button>
                 <button
                   onClick={() => setPayloadText('')}
-                  className="px-2.5 py-1 rounded text-[11px] font-medium bg-slate-800/80 hover:bg-rose-950/60 text-slate-400 hover:text-rose-400 transition cursor-pointer"
+                  className="px-2.5 py-1 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-800/80 hover:bg-rose-100 dark:hover:bg-rose-950/60 text-slate-500 hover:text-rose-600 dark:hover:text-rose-400 transition cursor-pointer"
                 >
                   Clear
                 </button>
@@ -413,13 +413,13 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
               />
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F17] hover:bg-slate-800/80 border border-slate-700/80 text-slate-300 transition cursor-pointer"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-50 dark:bg-[#0B0F17] hover:bg-slate-100 dark:hover:bg-slate-800/80 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 transition cursor-pointer"
               >
                 <Upload className="w-3.5 h-3.5 text-slate-400" />
                 <span>Upload Sample File (.json, .csv)</span>
               </button>
               {uploadedFile && (
-                <span className="text-xs text-emerald-400 font-mono flex items-center gap-1">
+                <span className="text-xs text-emerald-600 dark:text-emerald-400 font-mono flex items-center gap-1">
                   <Check className="w-3.5 h-3.5" />
                   {uploadedFile.name}
                 </span>
@@ -435,7 +435,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                   setUploadedFile(null);
                 }}
                 placeholder="Paste JSON or CSV AMI message payload here, or generate above..."
-                className="w-full h-full min-h-[320px] bg-[#0B0F17] border border-slate-800 rounded-lg p-3.5 text-xs text-slate-200 font-mono resize-y focus:outline-none focus:border-emerald-500/80 leading-relaxed"
+                className="w-full h-full min-h-[320px] bg-slate-50 dark:bg-[#0B0F17] border border-slate-200 dark:border-slate-800 rounded-lg p-3.5 text-xs text-slate-900 dark:text-slate-200 font-mono resize-y focus:outline-none focus:border-emerald-500/80 leading-relaxed transition-colors"
                 spellCheck={false}
               />
             </div>
@@ -466,51 +466,51 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
       {result && (
         <div ref={resultsRef} className="space-y-6 pt-4 fade-in">
           {/* Hero Result Banner */}
-          <div className="bg-[#111827] border border-slate-800/90 rounded-2xl p-6 shadow-xl">
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800">
+          <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-6 shadow-xs transition-colors">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-200 dark:border-slate-800">
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
                   {getStatusBadge(result.conformance.status)}
-                  <span className="text-xs text-slate-400 font-mono">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                     Run ID:{' '}
-                    <strong className="text-slate-200">{result.run_id}</strong>
+                    <strong className="text-slate-800 dark:text-slate-200">{result.run_id}</strong>
                   </span>
                   <button
                     onClick={() => {
                       navigator.clipboard.writeText(result.run_id);
                       success('Copied', 'Run ID copied');
                     }}
-                    className="text-slate-500 hover:text-slate-300 p-1 cursor-pointer"
+                    className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 p-1 cursor-pointer"
                   >
                     <Copy className="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <h2 className="text-lg font-bold text-white tracking-tight">
+                <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                   {result.conformance.summary}
                 </h2>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Transformed {result.source_vendor} → {result.target_vendor || 'Canonical'}{' '}
-                  in <strong className="text-slate-200">{result.duration_ms} ms</strong>.
+                  in <strong className="text-slate-800 dark:text-slate-200">{result.duration_ms} ms</strong>.
                 </p>
               </div>
 
               {/* Score / Metrics Badges */}
               <div className="grid grid-cols-3 gap-3">
-                <div className="bg-[#0B0F17] p-3 rounded-xl border border-slate-800 text-center">
-                  <div className="text-[11px] text-slate-400 font-medium">Assertions Checked</div>
-                  <div className="text-xl font-extrabold text-white mt-1">
+                <div className="bg-slate-50 dark:bg-[#0B0F17] p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Assertions Checked</div>
+                  <div className="text-xl font-extrabold text-slate-900 dark:text-white mt-1">
                     {result.conformance.total_assertions}
                   </div>
                 </div>
-                <div className="bg-[#0B0F17] p-3 rounded-xl border border-slate-800 text-center">
-                  <div className="text-[11px] text-rose-400 font-medium">Mandatory Fails</div>
-                  <div className="text-xl font-extrabold text-rose-400 mt-1">
+                <div className="bg-slate-50 dark:bg-[#0B0F17] p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
+                  <div className="text-[11px] text-rose-600 dark:text-rose-400 font-medium">Mandatory Fails</div>
+                  <div className="text-xl font-extrabold text-rose-600 dark:text-rose-400 mt-1">
                     {result.conformance.mandatory_failure_count}
                   </div>
                 </div>
-                <div className="bg-[#0B0F17] p-3 rounded-xl border border-slate-800 text-center">
-                  <div className="text-[11px] text-amber-400 font-medium">Warnings</div>
-                  <div className="text-xl font-extrabold text-amber-400 mt-1">
+                <div className="bg-slate-50 dark:bg-[#0B0F17] p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
+                  <div className="text-[11px] text-amber-600 dark:text-amber-400 font-medium">Warnings</div>
+                  <div className="text-xl font-extrabold text-amber-600 dark:text-amber-400 mt-1">
                     {result.conformance.warning_count}
                   </div>
                 </div>
@@ -519,8 +519,8 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
 
             {/* Stage Blame Attribution Pipeline Visualization */}
             <div className="pt-6">
-              <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-4 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-emerald-400" />
+              <h3 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <Layers className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <span>Blame Attribution Flow (Pipeline Diagnostics)</span>
               </h3>
 
@@ -548,34 +548,38 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                       }}
                       className={`p-3 rounded-xl border text-left transition cursor-pointer ${
                         stageFilter === stg.key
-                          ? 'ring-2 ring-emerald-500 border-transparent bg-slate-800/80'
-                          : 'bg-[#0B0F17] border-slate-800 hover:border-slate-700'
+                          ? 'ring-2 ring-emerald-500 border-transparent bg-slate-100 dark:bg-slate-800/80'
+                          : 'bg-slate-50 dark:bg-[#0B0F17] border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-slate-200">
+                        <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200">
                           {stg.label}
                         </span>
                         {isClean ? (
-                          <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                          <span className="w-2 h-2 rounded-full bg-emerald-500" />
                         ) : hasErr ? (
-                          <span className="w-2 h-2 rounded-full bg-rose-400" />
+                          <span className="w-2 h-2 rounded-full bg-rose-500" />
                         ) : (
-                          <span className="w-2 h-2 rounded-full bg-amber-400" />
+                          <span className="w-2 h-2 rounded-full bg-amber-500" />
                         )}
                       </div>
                       <div className="text-[10px] text-slate-500 mt-0.5">{stg.sub}</div>
                       <div className="mt-2 flex items-center gap-2 text-[11px] font-mono">
                         <span
                           className={`px-1.5 py-0.5 rounded ${
-                            hasErr ? 'bg-rose-500/10 text-rose-400' : 'text-slate-500'
+                            hasErr
+                              ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400'
+                              : 'text-slate-400 dark:text-slate-500'
                           }`}
                         >
                           {blame.error_count} Err
                         </span>
                         <span
                           className={`px-1.5 py-0.5 rounded ${
-                            hasWarn ? 'bg-amber-500/10 text-amber-400' : 'text-slate-500'
+                            hasWarn
+                              ? 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
+                              : 'text-slate-400 dark:text-slate-500'
                           }`}
                         >
                           {blame.warning_count} Warn
@@ -589,17 +593,17 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
           </div>
 
           {/* Results Navigation Bar */}
-          <div className="flex items-center gap-1 border-b border-slate-800 bg-[#111827] px-4 rounded-t-xl overflow-x-auto">
+          <div className="flex items-center gap-1 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111827] px-4 rounded-t-2xl overflow-x-auto transition-colors">
             <button
               onClick={() => setActiveResultTab('issues')}
               className={`flex items-center gap-2 px-4 py-3 text-xs font-semibold border-b-2 transition cursor-pointer whitespace-nowrap ${
                 activeResultTab === 'issues'
-                  ? 'border-emerald-500 text-emerald-400'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
+                  : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
               <span>Diagnostic Issues</span>
-              <span className="px-1.5 py-0.5 rounded-full text-[10px] font-mono bg-slate-800 text-slate-300">
+              <span className="px-1.5 py-0.5 rounded-full text-[10px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                 {result.issues.length}
               </span>
             </button>
@@ -608,14 +612,14 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
               onClick={() => setActiveResultTab('anomaly')}
               className={`flex items-center gap-2 px-4 py-3 text-xs font-semibold border-b-2 transition cursor-pointer whitespace-nowrap ${
                 activeResultTab === 'anomaly'
-                  ? 'border-emerald-500 text-emerald-400'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
+                  : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
-              <Flame className="w-3.5 h-3.5 text-amber-400" />
+              <Flame className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
               <span>ML Anomaly Heatmap (Stage E)</span>
               {result.anomaly_detection.has_anomalies && (
-                <span className="px-1.5 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/20 text-amber-300">
+                <span className="px-1.5 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/20 text-amber-700 dark:text-amber-300">
                   {result.anomaly_detection.anomaly_count}
                 </span>
               )}
@@ -625,11 +629,11 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
               onClick={() => setActiveResultTab('canonical')}
               className={`flex items-center gap-2 px-4 py-3 text-xs font-semibold border-b-2 transition cursor-pointer whitespace-nowrap ${
                 activeResultTab === 'canonical'
-                  ? 'border-emerald-500 text-emerald-400'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
+                  : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
-              <Code2 className="w-3.5 h-3.5 text-blue-400" />
+              <Code2 className="w-3.5 h-3.5 text-blue-500 dark:text-blue-400" />
               <span>Canonical Payload (IEC 61968-9)</span>
             </button>
 
@@ -637,11 +641,11 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
               onClick={() => setActiveResultTab('target')}
               className={`flex items-center gap-2 px-4 py-3 text-xs font-semibold border-b-2 transition cursor-pointer whitespace-nowrap ${
                 activeResultTab === 'target'
-                  ? 'border-emerald-500 text-emerald-400'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
+                  : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
-              <Layers className="w-3.5 h-3.5 text-purple-400" />
+              <Layers className="w-3.5 h-3.5 text-purple-500 dark:text-purple-400" />
               <span>Target Output ({result.target_vendor || 'None'})</span>
             </button>
 
@@ -649,8 +653,8 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
               onClick={() => setActiveResultTab('raw')}
               className={`flex items-center gap-2 px-4 py-3 text-xs font-semibold border-b-2 transition cursor-pointer whitespace-nowrap ${
                 activeResultTab === 'raw'
-                  ? 'border-emerald-500 text-emerald-400'
-                  : 'border-transparent text-slate-400 hover:text-slate-200'
+                  ? 'border-emerald-500 text-emerald-600 dark:text-emerald-400'
+                  : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
               <span>Raw Input</span>
@@ -658,23 +662,23 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
           </div>
 
           {/* Result Content Body */}
-          <div className="bg-[#111827] border border-t-0 border-slate-800 rounded-b-xl p-6 shadow-sm">
+          <div className="bg-white dark:bg-[#111827] border border-t-0 border-slate-200 dark:border-slate-800 rounded-b-2xl p-6 shadow-xs transition-colors">
             {/* TAB: ISSUES & AUTO-REMEDIATION */}
             {activeResultTab === 'issues' && (
               <div className="space-y-4">
                 {/* Filter Controls */}
-                <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800">
                   <div className="flex items-center gap-2 text-xs">
                     <Filter className="w-3.5 h-3.5 text-slate-400" />
-                    <span className="text-slate-400 font-medium">Filter Severity:</span>
+                    <span className="text-slate-500 dark:text-slate-400 font-medium">Filter Severity:</span>
                     {(['ALL', 'ERROR', 'WARNING'] as const).map((sev) => (
                       <button
                         key={sev}
                         onClick={() => setSeverityFilter(sev)}
                         className={`px-2.5 py-1 rounded-md text-xs font-medium cursor-pointer transition ${
                           severityFilter === sev
-                            ? 'bg-slate-800 text-white'
-                            : 'text-slate-400 hover:text-slate-200'
+                            ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold'
+                            : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                         }`}
                       >
                         {sev}
@@ -683,7 +687,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                   </div>
 
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="text-slate-400 font-medium">Stage:</span>
+                    <span className="text-slate-500 dark:text-slate-400 font-medium">Stage:</span>
                     {(['ALL', 'SOURCE', 'ADAPTER', 'CANONICAL', 'TARGET', 'ANOMALY'] as const).map(
                       (stg) => (
                         <button
@@ -691,8 +695,8 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                           onClick={() => setStageFilter(stg as any)}
                           className={`px-2 py-0.5 rounded text-[11px] font-mono cursor-pointer transition ${
                             stageFilter === stg
-                              ? 'bg-slate-800 text-white'
-                              : 'text-slate-500 hover:text-slate-300'
+                              ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white font-semibold'
+                              : 'text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
                           }`}
                         >
                           {stg}
@@ -712,8 +716,8 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                           key={idx}
                           className={`p-4 rounded-xl border space-y-2.5 transition ${
                             isErr
-                              ? 'bg-rose-950/20 border-rose-900/40 text-slate-200'
-                              : 'bg-amber-950/20 border-amber-900/40 text-slate-200'
+                              ? 'bg-rose-50/50 dark:bg-rose-950/20 border-rose-200 dark:border-rose-900/40 text-slate-800 dark:text-slate-200'
+                              : 'bg-amber-50/50 dark:bg-amber-950/20 border-amber-200 dark:border-amber-900/40 text-slate-800 dark:text-slate-200'
                           }`}
                         >
                           <div className="flex items-start justify-between gap-4">
@@ -721,33 +725,33 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                               <span
                                 className={`px-2 py-0.5 rounded text-[10px] font-extrabold uppercase font-mono ${
                                   isErr
-                                    ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
-                                    : 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
+                                    ? 'bg-rose-500/15 text-rose-700 dark:text-rose-300 border border-rose-500/30'
+                                    : 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30'
                                 }`}
                               >
                                 {iss.severity}
                               </span>
-                              <span className="font-mono text-xs font-bold text-white">
+                              <span className="font-mono text-xs font-bold text-slate-900 dark:text-white">
                                 {iss.code}
                               </span>
-                              <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-400 border border-slate-700">
+                              <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
                                 {iss.stage}
                               </span>
                             </div>
-                            <span className="text-xs font-mono text-slate-400">
-                              Field: <strong className="text-slate-200">{iss.field}</strong>
+                            <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                              Field: <strong className="text-slate-800 dark:text-slate-200">{iss.field}</strong>
                             </span>
                           </div>
 
-                          <p className="text-xs text-slate-300 leading-relaxed">{iss.message}</p>
+                          <p className="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{iss.message}</p>
 
                           {iss.suggested_fix && (
-                            <div className="p-3 rounded-lg bg-[#0B0F17] border border-slate-800/80 text-xs">
-                              <div className="text-[11px] font-semibold text-emerald-400 mb-1 flex items-center gap-1">
+                            <div className="p-3 rounded-lg bg-white dark:bg-[#0B0F17] border border-slate-200 dark:border-slate-800/80 text-xs">
+                              <div className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 mb-1 flex items-center gap-1">
                                 <Zap className="w-3.5 h-3.5" />
                                 <span>Suggested Auto-Remediation:</span>
                               </div>
-                              <p className="text-slate-300 font-mono text-[11px] leading-relaxed">
+                              <p className="text-slate-600 dark:text-slate-300 font-mono text-[11px] leading-relaxed">
                                 {iss.suggested_fix}
                               </p>
                             </div>
@@ -757,10 +761,10 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                     })}
                   </div>
                 ) : (
-                  <div className="p-8 text-center bg-[#0B0F17] rounded-xl border border-slate-800 text-xs">
-                    <CheckCircle2 className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
-                    <span className="font-semibold text-white">Zero Conformance Violations</span>
-                    <p className="text-slate-400 mt-1">
+                  <div className="p-8 text-center bg-slate-50 dark:bg-[#0B0F17] rounded-xl border border-slate-200 dark:border-slate-800 text-xs">
+                    <CheckCircle2 className="w-8 h-8 text-emerald-600 dark:text-emerald-400 mx-auto mb-2" />
+                    <span className="font-semibold text-slate-900 dark:text-white">Zero Conformance Violations</span>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1">
                       All criteria passed according to IEC 61968-9 and IS 15959 specs.
                     </p>
                   </div>
@@ -771,20 +775,20 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
             {/* TAB: ML ANOMALY HEATMAP */}
             {activeResultTab === 'anomaly' && (
               <div className="space-y-6">
-                <div className="flex items-center justify-between bg-[#0B0F17] p-4 rounded-xl border border-slate-800">
+                <div className="flex items-center justify-between bg-slate-50 dark:bg-[#0B0F17] p-4 rounded-xl border border-slate-200 dark:border-slate-800">
                   <div>
-                    <h3 className="text-xs font-bold text-white flex items-center gap-2">
-                      <Flame className="w-4 h-4 text-amber-400" />
+                    <h3 className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <Flame className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                       <span>Stage E: Machine Learning Telemetry Anomaly Detection</span>
                     </h3>
-                    <p className="text-[11px] text-slate-400 mt-1">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                       Isolation Forest algorithm with automated fallback to multi-feature Z-score detection.
                     </p>
                   </div>
                   <div className="text-right">
                     <div className="text-xs font-mono">
                       Anomaly Rate:{' '}
-                      <strong className="text-amber-400">
+                      <strong className="text-amber-600 dark:text-amber-400">
                         {(result.anomaly_detection.anomaly_rate * 100).toFixed(1)}%
                       </strong>
                     </div>
@@ -797,8 +801,8 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
 
                 {/* Heatmap Grid */}
                 <div>
-                  <h4 className="text-xs font-semibold text-slate-300 mb-2">Reading Cells Heatmap:</h4>
-                  <div className="flex flex-wrap gap-1.5 p-4 bg-[#0B0F17] rounded-xl border border-slate-800">
+                  <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Reading Cells Heatmap:</h4>
+                  <div className="flex flex-wrap gap-1.5 p-4 bg-slate-50 dark:bg-[#0B0F17] rounded-xl border border-slate-200 dark:border-slate-800">
                     {result.canonical_payload.readings.map((r, i) => {
                       const isAnom = r.is_anomaly;
                       const score = r.anomaly_score ?? 0;
@@ -808,8 +812,8 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                           title={`Reading #${i}\nMeter: ${r.meter_serial_number}\nTimestamp: ${r.timestamp}\nAnomaly Score: ${score.toFixed(3)}\nIs Anomaly: ${isAnom ? 'YES' : 'NO'}`}
                           className={`w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-mono cursor-pointer border transition-transform hover:scale-110 ${
                             isAnom
-                              ? 'bg-amber-500/25 border-amber-500/60 text-amber-300 shadow-sm shadow-amber-500/20'
-                              : 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400'
+                              ? 'bg-amber-500/20 border-amber-500/60 text-amber-700 dark:text-amber-300 shadow-xs'
+                              : 'bg-emerald-500/10 border-emerald-500/25 text-emerald-700 dark:text-emerald-400'
                           }`}
                         >
                           {isAnom ? '⚠' : i + 1}
@@ -832,29 +836,29 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                 {/* Flagged Readings Details */}
                 {result.anomaly_detection.flagged_readings.length > 0 && (
                   <div>
-                    <h4 className="text-xs font-semibold text-slate-300 mb-2">Flagged Telemetry Anomalies:</h4>
+                    <h4 className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Flagged Telemetry Anomalies:</h4>
                     <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
                       {result.anomaly_detection.flagged_readings.map((a, i) => (
                         <div
                           key={i}
-                          className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg bg-[#0B0F17] border border-amber-500/30 gap-2 text-xs"
+                          className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-[#0B0F17] border border-amber-300 dark:border-amber-500/30 gap-2 text-xs"
                         >
                           <div className="space-y-1">
                             <div className="flex items-center gap-2">
-                              <span className="text-amber-400 font-bold font-mono">
+                              <span className="text-amber-700 dark:text-amber-400 font-bold font-mono">
                                 Reading #{a.reading_index}
                               </span>
-                              <span className="text-slate-400 font-mono">
+                              <span className="text-slate-500 dark:text-slate-400 font-mono">
                                 Meter: {a.meter_serial_number}
                               </span>
-                              <span className="px-1.5 py-0.5 rounded text-[10px] bg-slate-800 text-slate-400 font-mono">
+                              <span className="px-1.5 py-0.5 rounded text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-400 font-mono">
                                 Method: {a.method}
                               </span>
                             </div>
-                            <p className="text-slate-300">{a.description}</p>
+                            <p className="text-slate-700 dark:text-slate-300">{a.description}</p>
                           </div>
                           <div className="text-right shrink-0">
-                            <span className="text-xs font-mono font-bold text-amber-400">
+                            <span className="text-xs font-mono font-bold text-amber-700 dark:text-amber-400">
                               Score: {a.anomaly_score.toFixed(3)}
                             </span>
                             {a.contributing_features.length > 0 && (
@@ -875,7 +879,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
             {activeResultTab === 'canonical' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
                     IEC 61968-9 Normalized Canonical Data Object
                   </span>
                   <button
@@ -885,13 +889,13 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                       );
                       success('Copied', 'Canonical payload copied');
                     }}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F17] hover:bg-slate-800 border border-slate-700/80 text-slate-300 transition cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-[#0B0F17] hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 transition cursor-pointer"
                   >
                     <Copy className="w-3.5 h-3.5" />
                     <span>Copy Canonical JSON</span>
                   </button>
                 </div>
-                <pre className="p-4 bg-[#0B0F17] rounded-xl border border-slate-800 text-xs font-mono text-emerald-300 overflow-x-auto max-h-[460px] leading-relaxed">
+                <pre className="p-4 bg-slate-900 rounded-xl border border-slate-800 text-xs font-mono text-emerald-300 overflow-x-auto max-h-[460px] leading-relaxed">
                   {JSON.stringify(result.canonical_payload, null, 2)}
                 </pre>
               </div>
@@ -901,7 +905,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
             {activeResultTab === 'target' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-400">
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
                     Serialized Format for Target System: {result.target_vendor || 'None'}
                   </span>
                   {result.target_output && (
@@ -915,7 +919,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                           navigator.clipboard.writeText(text);
                           success('Copied', 'Target output copied');
                         }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F17] hover:bg-slate-800 border border-slate-700/80 text-slate-300 transition cursor-pointer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-[#0B0F17] hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 transition cursor-pointer"
                       >
                         <Copy className="w-3.5 h-3.5" />
                         <span>Copy Output</span>
@@ -934,7 +938,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                           a.click();
                           URL.revokeObjectURL(url);
                         }}
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-[#0B0F17] hover:bg-slate-800 border border-slate-700/80 text-slate-300 transition cursor-pointer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 dark:bg-[#0B0F17] hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 transition cursor-pointer"
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>Download</span>
@@ -942,7 +946,7 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                     </div>
                   )}
                 </div>
-                <pre className="p-4 bg-[#0B0F17] rounded-xl border border-slate-800 text-xs font-mono text-cyan-300 overflow-x-auto max-h-[460px] leading-relaxed">
+                <pre className="p-4 bg-slate-900 rounded-xl border border-slate-800 text-xs font-mono text-cyan-300 overflow-x-auto max-h-[460px] leading-relaxed">
                   {result.target_output
                     ? typeof result.target_output === 'string'
                       ? result.target_output
@@ -955,8 +959,8 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
             {/* TAB: RAW INPUT */}
             {activeResultTab === 'raw' && (
               <div className="space-y-4">
-                <span className="text-xs text-slate-400">Original Ingested Message Payload</span>
-                <pre className="p-4 bg-[#0B0F17] rounded-xl border border-slate-800 text-xs font-mono text-slate-300 overflow-x-auto max-h-[460px] leading-relaxed">
+                <span className="text-xs text-slate-500 dark:text-slate-400">Original Ingested Message Payload</span>
+                <pre className="p-4 bg-slate-900 rounded-xl border border-slate-800 text-xs font-mono text-slate-200 overflow-x-auto max-h-[460px] leading-relaxed">
                   {payloadText}
                 </pre>
               </div>
@@ -967,4 +971,3 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
     </div>
   );
 };
-

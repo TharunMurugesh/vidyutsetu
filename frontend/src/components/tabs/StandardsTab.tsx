@@ -113,15 +113,15 @@ export const StandardsTab: React.FC = () => {
   return (
     <div className="space-y-6 fade-in pb-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
         <div>
-          <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <span>AMI Standards & Specifications Reference</span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">
+            <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
               Regulatory Framework
             </span>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Authoritative guidelines for smart metering under the Revamped Distribution Sector Scheme (RDSS) and IEC TC 57.
           </p>
         </div>
@@ -129,88 +129,88 @@ export const StandardsTab: React.FC = () => {
 
       {/* Standards Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="bg-[#111827] border border-slate-800/90 rounded-2xl p-6 shadow-sm space-y-4">
+        <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-6 shadow-xs space-y-4 transition-colors">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-              <Bookmark className="w-5 h-5 text-emerald-400" />
+              <Bookmark className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white">IS 15959 Companion Specification</h2>
-              <p className="text-xs text-slate-400">Bureau of Indian Standards (BIS) & Central Electricity Authority (CEA)</p>
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">IS 15959 Companion Specification</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Bureau of Indian Standards (BIS) & Central Electricity Authority (CEA)</p>
             </div>
           </div>
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Mandated for all Indian smart meter rollouts under RDSS. It governs data exchange Companion Specifications for Electricity Metering, standardizing OBIS register profiles, load surveys (15/30-minute intervals), daily billing profiles, and anti-tamper mechanisms.
           </p>
-          <div className="space-y-2 text-xs bg-[#0B0F17] p-3.5 rounded-xl border border-slate-800">
+          <div className="space-y-2 text-xs bg-slate-50 dark:bg-[#0B0F17] p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
             <div>
-              <strong className="text-emerald-400">Part 1:</strong> AC Static Direct Connected Meters (up to 60A / 100A, single-phase & three-phase).
+              <strong className="text-emerald-600 dark:text-emerald-400">Part 1:</strong> AC Static Direct Connected Meters (up to 60A / 100A, single-phase & three-phase).
             </div>
             <div>
-              <strong className="text-emerald-400">Part 2:</strong> Transformer-Operated Static Watt-hour and Var-hour Meters (CT/PT operated).
+              <strong className="text-emerald-600 dark:text-emerald-400">Part 2:</strong> Transformer-Operated Static Watt-hour and Var-hour Meters (CT/PT operated).
             </div>
             <div>
-              <strong className="text-emerald-400">Part 3:</strong> High Voltage Boundary and Feeder Metering interfaces.
+              <strong className="text-emerald-600 dark:text-emerald-400">Part 3:</strong> High Voltage Boundary and Feeder Metering interfaces.
             </div>
           </div>
         </div>
 
-        <div className="bg-[#111827] border border-slate-800/90 rounded-2xl p-6 shadow-sm space-y-4">
+        <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-6 shadow-xs space-y-4 transition-colors">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-              <Layers className="w-5 h-5 text-blue-400" />
+              <Layers className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white">IEC 61968-9 (CIM for Distribution)</h2>
-              <p className="text-xs text-slate-400">International Electrotechnical Commission TC 57</p>
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">IEC 61968-9 (CIM for Distribution)</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">International Electrotechnical Commission TC 57</p>
             </div>
           </div>
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Specifies the vendor-neutral Common Information Model (CIM) for smart metering system interfaces. Translates raw meter register measurements into canonical <code>MeterReadings</code> and grid alarms into standardized <code>EndDeviceEvents</code>.
           </p>
-          <div className="space-y-2 text-xs bg-[#0B0F17] p-3.5 rounded-xl border border-slate-800">
+          <div className="space-y-2 text-xs bg-slate-50 dark:bg-[#0B0F17] p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 transition-colors">
             <div>
-              <strong className="text-blue-400">MeterReadings & IntervalBlocks:</strong> Structured time-series profiles with ReadingQuality flags.
+              <strong className="text-blue-600 dark:text-blue-400">MeterReadings & IntervalBlocks:</strong> Structured time-series profiles with ReadingQuality flags.
             </div>
             <div>
-              <strong className="text-blue-400">EndDeviceEvents:</strong> Normalized codes for tamper events, supply outages, and power quality alerts.
+              <strong className="text-blue-600 dark:text-blue-400">EndDeviceEvents:</strong> Normalized codes for tamper events, supply outages, and power quality alerts.
             </div>
             <div>
-              <strong className="text-blue-400">EndDeviceControls:</strong> Connect/disconnect commands and load limitation signals.
+              <strong className="text-blue-600 dark:text-blue-400">EndDeviceControls:</strong> Connect/disconnect commands and load limitation signals.
             </div>
           </div>
         </div>
       </div>
 
       {/* Searchable OBIS Registry */}
-      <div className="bg-[#111827] border border-slate-800/90 rounded-2xl overflow-hidden shadow-sm">
-        <div className="p-4 sm:p-5 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl overflow-hidden shadow-xs transition-colors">
+        <div className="p-4 sm:p-5 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 className="text-sm font-bold text-white flex items-center gap-2">
-              <BookOpen className="w-4 h-4 text-emerald-400" />
+            <h2 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <BookOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               <span>IS 15959 & DLMS OBIS Register Registry</span>
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               Official Object Identification System (OBIS) definitions for energy, power quality, and anti-tamper.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
             <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-500 absolute left-3 top-2.5" />
+              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
               <input
                 type="text"
                 placeholder="Search OBIS or register..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="bg-[#0B0F17] border border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 w-48"
+                className="bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg pl-8 pr-3 py-1.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 w-48 transition-colors"
               />
             </div>
 
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="bg-[#0B0F17] border border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-slate-300 focus:outline-none cursor-pointer"
+              className="bg-slate-50 dark:bg-[#0B0F17] border border-slate-300 dark:border-slate-700/80 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 dark:text-slate-300 focus:outline-none cursor-pointer transition-colors"
             >
               <option value="ALL">All Categories</option>
               <option value="Energy">Energy Registers</option>
@@ -222,7 +222,7 @@ export const StandardsTab: React.FC = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
-            <thead className="bg-[#0B0F17]/60 text-slate-400 font-semibold border-b border-slate-800">
+            <thead className="bg-slate-50 dark:bg-[#0B0F17]/60 text-slate-600 dark:text-slate-400 font-semibold border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th className="py-3 px-4">OBIS Code</th>
                 <th className="py-3 px-4">Register Name</th>
@@ -232,19 +232,19 @@ export const StandardsTab: React.FC = () => {
                 <th className="py-3 px-4">Description</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-sans">
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 font-sans">
               {filtered.map((item, idx) => (
-                <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
-                  <td className="py-3 px-4 font-mono font-bold text-blue-400">{item.obis}</td>
-                  <td className="py-3 px-4 font-semibold text-slate-200">{item.name}</td>
+                <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                  <td className="py-3 px-4 font-mono font-bold text-blue-600 dark:text-blue-400">{item.obis}</td>
+                  <td className="py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">{item.name}</td>
                   <td className="py-3 px-4">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-slate-800 text-slate-300">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                       {item.category}
                     </span>
                   </td>
-                  <td className="py-3 px-4 font-mono text-emerald-400">{item.scale}</td>
-                  <td className="py-3 px-4 text-slate-300">{item.is15959Part}</td>
-                  <td className="py-3 px-4 text-slate-400">{item.description}</td>
+                  <td className="py-3 px-4 font-mono text-emerald-600 dark:text-emerald-400">{item.scale}</td>
+                  <td className="py-3 px-4 text-slate-700 dark:text-slate-300">{item.is15959Part}</td>
+                  <td className="py-3 px-4 text-slate-500 dark:text-slate-400">{item.description}</td>
                 </tr>
               ))}
             </tbody>
@@ -254,4 +254,3 @@ export const StandardsTab: React.FC = () => {
     </div>
   );
 };
-
