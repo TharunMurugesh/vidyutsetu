@@ -152,3 +152,4 @@ export const VendorsTab: React.FC<VendorsTabProps> = ({ onNavigate }) => {
     </div>
   );
 };
+

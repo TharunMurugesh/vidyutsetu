@@ -48,3 +48,4 @@ def test_ui_api_dependencies():
     vendors_res = client.get("/api/vendors")
     assert vendors_res.status_code == 200
     assert "alpha-hes" in vendors_res.json()
+

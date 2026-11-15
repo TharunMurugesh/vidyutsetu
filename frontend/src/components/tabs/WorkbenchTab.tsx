@@ -967,3 +967,4 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
     </div>
   );
 };
+
