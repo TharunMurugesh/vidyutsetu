@@ -149,18 +149,13 @@ export const HistoryTab: React.FC<HistoryTabProps> = ({
   });
 
   return (
-    <div className="space-y-6 fade-in pb-12">
+    <div className="space-y-5 fade-in pb-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <span>Audit History & Regression Comparator</span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20">
-              Audit Logs & Diff
-            </span>
-          </h1>
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white">Test History</h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Historical validation trace with assertion-level regression detection between test builds.
+            Browse all past test runs, inspect individual results, or compare two runs to spot regressions.
           </p>
         </div>
         <button

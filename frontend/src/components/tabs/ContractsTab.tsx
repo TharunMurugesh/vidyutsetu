@@ -71,14 +71,10 @@ export const ContractsTab: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <span>Adapter Contracts & Schemas</span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border border-cyan-500/20">
-              Versioned Specifications
-            </span>
-          </h1>
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white">Data Contracts</h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Declarative data contracts and semantic schema comparison between utility systems.
+            Each vendor must follow a contract — a list of fields it promises to send and receive.
+            Use the diff tool to compare what two vendors support.
           </p>
         </div>
         <button

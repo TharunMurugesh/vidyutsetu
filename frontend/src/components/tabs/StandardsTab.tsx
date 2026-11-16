@@ -116,13 +116,13 @@ export const StandardsTab: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
         <div>
           <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <span>AMI Standards & Specifications Reference</span>
+            <span>Standards Guide</span>
             <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20">
               Regulatory Framework
             </span>
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Authoritative guidelines for smart metering under the Revamped Distribution Sector Scheme (RDSS) and IEC TC 57.
+            Your reference for the Indian and international standards that VidyutSetu validates against.
           </p>
         </div>
       </div>

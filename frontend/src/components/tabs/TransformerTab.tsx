@@ -99,24 +99,21 @@ export const TransformerTab: React.FC = () => {
   );
 
   return (
-    <div className="space-y-6 fade-in pb-12">
+    <div className="space-y-5 fade-in pb-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-1">
         <div>
-          <h1 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <span>Live Canonical Transformation Engine</span>
-            <span className="text-xs font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-              Two-Way Multiplier Matrix
-            </span>
-          </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Universal semantic normalizer aligning proprietary vendor formats to the IEC 61968-9 standard.
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white">Field Mapping Reference</h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xl">
+            Each row below shows how a single data field (like "energy in kWh") is represented
+            differently across vendor systems — and how VidyutSetu converts between them.
+            Click any row to inspect the conversion formula.
           </p>
         </div>
       </div>
 
       {/* Interactive Visual Transformation Pipeline */}
-      <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-slate-800/90 rounded-2xl p-5 shadow-xs space-y-4 transition-colors">
+      <div className="card p-5 space-y-4">
         <h2 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
           <ArrowLeftRight className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
           <span>Interactive Two-Way Mapping Inspector</span>
