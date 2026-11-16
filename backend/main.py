@@ -2,9 +2,17 @@
 
 import os
 from fastapi import FastAPI
+from fastapi.encoders import ENCODERS_BY_TYPE
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+import numpy as np
+
+# Global numpy type encoders for seamless FastAPI serialization
+ENCODERS_BY_TYPE[np.bool_] = bool
+ENCODERS_BY_TYPE[np.integer] = int
+ENCODERS_BY_TYPE[np.floating] = float
+ENCODERS_BY_TYPE[np.ndarray] = lambda x: x.tolist()
 
 from backend.db.database import init_db
 from backend.api.routes import router as api_router

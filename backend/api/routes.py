@@ -198,14 +198,14 @@ async def execute_interoperability_test(
     # Stage E: ML Anomaly Detection (Isolation Forest or Z-score fallback per meter)
     anomaly_report = AnomalyDetectionEngine.detect(canonical_payload.readings)
     for ra in anomaly_report.flat:
-        canonical_payload.readings[ra.reading_index].anomaly_score = ra.anomaly_score
-        canonical_payload.readings[ra.reading_index].is_anomaly = ra.is_anomaly
+        canonical_payload.readings[ra.reading_index].anomaly_score = float(ra.anomaly_score) if ra.anomaly_score is not None else None
+        canonical_payload.readings[ra.reading_index].is_anomaly = bool(ra.is_anomaly) if ra.is_anomaly is not None else None
     # Also annotate non-anomaly readings with their scores
     for meter_results in anomaly_report.per_meter.values():
         for ra in meter_results:
             if not ra.is_anomaly:
-                canonical_payload.readings[ra.reading_index].anomaly_score = ra.anomaly_score
-                canonical_payload.readings[ra.reading_index].is_anomaly = ra.is_anomaly
+                canonical_payload.readings[ra.reading_index].anomaly_score = float(ra.anomaly_score) if ra.anomaly_score is not None else None
+                canonical_payload.readings[ra.reading_index].is_anomaly = bool(ra.is_anomaly) if ra.is_anomaly is not None else None
     anomaly_issues = AnomalyDetectionEngine.to_diagnostic_issues(anomaly_report)
 
     all_issues = source_issues + adapter_issues + validation_issues + target_issues + anomaly_issues
@@ -270,18 +270,18 @@ async def execute_interoperability_test(
     db.commit()
 
     anomaly_summary = {
-        "total_readings": anomaly_report.total_readings,
-        "anomaly_count": anomaly_report.anomaly_count,
-        "anomaly_rate": anomaly_report.anomaly_rate,
-        "has_anomalies": anomaly_report.has_anomalies,
+        "total_readings": int(anomaly_report.total_readings),
+        "anomaly_count": int(anomaly_report.anomaly_count),
+        "anomaly_rate": float(anomaly_report.anomaly_rate),
+        "has_anomalies": bool(anomaly_report.has_anomalies),
         "flagged_readings": [
             {
-                "reading_index": a.reading_index,
-                "meter_serial_number": a.meter_serial_number,
-                "anomaly_score": a.anomaly_score,
-                "method": a.method,
-                "contributing_features": a.contributing_features,
-                "description": a.description,
+                "reading_index": int(a.reading_index),
+                "meter_serial_number": str(a.meter_serial_number),
+                "anomaly_score": float(a.anomaly_score),
+                "method": str(a.method),
+                "contributing_features": list(a.contributing_features),
+                "description": str(a.description),
             }
             for a in anomaly_report.flat
         ],

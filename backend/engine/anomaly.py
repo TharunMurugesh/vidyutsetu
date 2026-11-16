@@ -93,7 +93,7 @@ def _isolation_forest(
 
     results = []
     for i, (pred, score) in enumerate(zip(preds, norm)):
-        is_anom = pred == -1
+        is_anom = bool(pred == -1)
         contrib = _top_contributors(X, i, feat_names) if is_anom else []
         results.append(ReadingAnomaly(
             meter_serial_number=meter_sn,
@@ -130,13 +130,13 @@ def _zscore_fallback(
 
     results = []
     for i, (row_z, feat_z) in enumerate(zip(max_z, z)):
-        is_anom = float(row_z) > _ZSCORE_THRESHOLD
+        is_anom = bool(float(row_z) > _ZSCORE_THRESHOLD)
         score = min(1.0, float(row_z) / (_ZSCORE_THRESHOLD * 2))
         contrib = [feat_names[j] for j in np.argsort(feat_z)[::-1][:2] if feat_z[j] > _ZSCORE_THRESHOLD] if is_anom else []
         results.append(ReadingAnomaly(
             meter_serial_number=meter_sn,
             reading_index=global_offset + i,
-            anomaly_score=round(score, 4),
+            anomaly_score=round(float(score), 4),
             is_anomaly=is_anom,
             method="zscore",
             contributing_features=contrib,
