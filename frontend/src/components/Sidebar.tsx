@@ -11,13 +11,10 @@ import {
   Sun,
   Moon,
   ShieldCheck,
-  Menu,
   X,
-  HelpCircle,
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { api } from '../services/api';
-import { Tooltip } from './Tooltip';
 
 export type TabKey =
   | 'dashboard'
@@ -125,8 +122,8 @@ const SidebarContent: React.FC<SidebarProps> = ({ activeTab, onTabChange, onMobi
 
   return (
     <div className="flex flex-col h-full">
-      {/* Brand */}
-      <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-700/60">
+      {/* Brand Header with Frosted Glass Border */}
+      <div className="px-5 py-4 border-b border-slate-200/80 dark:border-slate-800/80">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-cyan-400 p-[1.5px] shadow-md shadow-emerald-500/20 shrink-0">
@@ -152,8 +149,8 @@ const SidebarContent: React.FC<SidebarProps> = ({ activeTab, onTabChange, onMobi
           </button>
         </div>
 
-        {/* Standards badge */}
-        <div className="mt-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/8 dark:bg-emerald-500/10 border border-emerald-500/20">
+        {/* Standards badge with subtle glassmorphism */}
+        <div className="mt-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 dark:bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-xs">
           <ShieldCheck className="w-3 h-3 text-emerald-600 dark:text-emerald-400 shrink-0" />
           <span className="text-[10px] font-medium text-emerald-700 dark:text-emerald-400">
             IEC 61968-9 · IS 15959 · DLMS
@@ -161,28 +158,29 @@ const SidebarContent: React.FC<SidebarProps> = ({ activeTab, onTabChange, onMobi
         </div>
       </div>
 
-      {/* Nav */}
-      <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0.5">
-        <p className="section-label px-3 mb-3">Navigation</p>
+      {/* Nav with Uniform Full-Width Rows */}
+      <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1">
+        <p className="section-label px-3 mb-2.5">Navigation</p>
 
         {navItems.map((item) => {
           const isActive = activeTab === item.key;
           return (
-            <Tooltip key={item.key} content={item.tip} position="right">
+            <div key={item.key} className="w-full">
               <button
                 onClick={() => handleNav(item.key)}
-                className={`w-full flex items-center justify-between px-3 py-3 rounded-xl text-left transition-all duration-150 group cursor-pointer ${
+                title={item.tip}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left transition-all duration-200 group cursor-pointer border ${
                   isActive
-                    ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 shadow-sm'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/80 dark:hover:bg-slate-800/50'
+                    ? 'bg-emerald-500/12 dark:bg-emerald-500/15 backdrop-blur-md border-emerald-500/30 text-emerald-800 dark:text-emerald-300 font-semibold shadow-xs shadow-emerald-500/10'
+                    : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/60 hover:backdrop-blur-md hover:border-slate-300/40 dark:hover:border-slate-700/50'
                 }`}
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div
                     className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                       isActive
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-700 group-hover:text-slate-700 dark:group-hover:text-slate-200'
+                        ? 'bg-emerald-500 text-white shadow-xs'
+                        : 'bg-slate-100 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-700/80 group-hover:text-slate-700 dark:group-hover:text-slate-200'
                     }`}
                   >
                     {item.icon}
@@ -199,25 +197,25 @@ const SidebarContent: React.FC<SidebarProps> = ({ activeTab, onTabChange, onMobi
                   <span
                     className={`ml-2 px-1.5 py-0.5 rounded-md text-[10px] font-bold shrink-0 ${
                       isActive
-                        ? 'bg-emerald-200 dark:bg-emerald-500/25 text-emerald-800 dark:text-emerald-300'
-                        : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400'
+                        ? 'bg-emerald-200/80 dark:bg-emerald-500/25 text-emerald-800 dark:text-emerald-300'
+                        : 'bg-slate-200/80 dark:bg-slate-700/70 text-slate-600 dark:text-slate-400'
                     }`}
                   >
                     {item.badge}
                   </span>
                 )}
               </button>
-            </Tooltip>
+            </div>
           );
         })}
       </nav>
 
-      {/* Footer */}
-      <div className="px-3 py-3 border-t border-slate-200 dark:border-slate-700/60 space-y-2 bg-slate-50/60 dark:bg-slate-900/30">
-        {/* Theme Toggle */}
+      {/* Footer with Frosted Glass Appearance */}
+      <div className="px-3 py-3 border-t border-slate-200/80 dark:border-slate-800/80 space-y-2 bg-slate-50/50 dark:bg-slate-900/40 backdrop-blur-md">
+        {/* Theme Toggle Button */}
         <button
           onClick={toggleTheme}
-          className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 hover:bg-slate-100 dark:hover:bg-slate-700/80 transition cursor-pointer"
+          className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-700 dark:text-slate-300 bg-white/70 dark:bg-slate-800/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-700/60 hover:bg-white dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-200 cursor-pointer shadow-xs"
         >
           <div className="flex items-center gap-2.5">
             {theme === 'dark' ? (
@@ -225,7 +223,7 @@ const SidebarContent: React.FC<SidebarProps> = ({ activeTab, onTabChange, onMobi
             ) : (
               <Moon className="w-4 h-4 text-indigo-500" />
             )}
-            <span className="text-sm">{theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'}</span>
+            <span className="text-xs font-semibold">{theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'}</span>
           </div>
         </button>
 
@@ -251,8 +249,8 @@ const SidebarContent: React.FC<SidebarProps> = ({ activeTab, onTabChange, onMobi
 export const Sidebar: React.FC<SidebarProps> = (props) => {
   return (
     <>
-      {/* Desktop — fixed */}
-      <aside className="hidden lg:flex w-64 fixed inset-y-0 left-0 z-40 flex-col bg-white dark:bg-[#131c2e] border-r border-slate-200 dark:border-slate-700/60 transition-colors duration-200 select-none">
+      {/* Desktop — fixed frosted glass panel */}
+      <aside className="hidden lg:flex w-64 fixed inset-y-0 left-0 z-40 flex-col bg-white/80 dark:bg-[#111827]/85 backdrop-blur-xl border-r border-slate-200/70 dark:border-slate-800/70 transition-colors duration-200 select-none">
         <SidebarContent {...props} />
       </aside>
 
@@ -264,7 +262,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
         />
       )}
       <aside
-        className={`lg:hidden fixed inset-y-0 left-0 z-50 w-72 flex flex-col bg-white dark:bg-[#131c2e] border-r border-slate-200 dark:border-slate-700/60 select-none transition-transform duration-300 ease-out shadow-2xl ${
+        className={`lg:hidden fixed inset-y-0 left-0 z-50 w-72 flex flex-col bg-white/95 dark:bg-[#111827]/95 backdrop-blur-2xl border-r border-slate-200/80 dark:border-slate-800/80 select-none transition-transform duration-300 ease-out shadow-2xl ${
           props.mobileOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >

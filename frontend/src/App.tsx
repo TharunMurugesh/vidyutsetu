@@ -60,8 +60,8 @@ export const AppContent: React.FC = () => {
 
       {/* Main — offset by sidebar on lg+ */}
       <div className="flex-1 lg:ml-64 flex flex-col min-w-0">
-        {/* Top Header */}
-        <header className="sticky top-0 z-30 h-14 bg-white/85 dark:bg-[#111827]/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-700/40 px-4 md:px-6 flex items-center justify-between transition-colors">
+        {/* Top Header with Frosted Glass Effect */}
+        <header className="sticky top-0 z-30 h-14 bg-white/80 dark:bg-[#111827]/80 backdrop-blur-xl border-b border-slate-200/70 dark:border-slate-800/70 px-4 md:px-6 flex items-center justify-between transition-colors">
           {/* Left — hamburger + title */}
           <div className="flex items-center gap-3 min-w-0">
             {/* Hamburger (mobile only) */}

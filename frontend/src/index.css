@@ -15,9 +15,9 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* ── Dark mode: soft ink, not pitch black ── */
+  /* ── Dark mode: soft ink ── */
   html.dark body {
-    background-color: #111827;
+    background-color: #0d131f;
     color: #e2e8f0;
   }
 
@@ -36,19 +36,47 @@
   }
 }
 
-/* ── Shared card base ── */
-.card {
-  background-color: #ffffff;
-  border: 1px solid #e5e9f0;
-  border-radius: 1rem;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.04);
-  transition: border-color 0.15s ease, background-color 0.2s ease;
+/* ── Enterprise Frosted Glass Panels ── */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+}
+html.dark .glass-panel {
+  background: rgba(17, 24, 39, 0.78);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-html.dark .card {
-  background-color: #1a2234;
-  border-color: #2d3748;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.25);
+/* ── Enterprise Glass Card ── */
+.card, .glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.03), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark .card, html.dark .glass-card {
+  background: rgba(23, 31, 48, 0.72);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.25), 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+.card:hover, .glass-card:hover {
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 0 12px rgba(16, 185, 129, 0.05);
+}
+
+html.dark .card:hover, html.dark .glass-card:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 28px -4px rgba(0, 0, 0, 0.35), 0 0 16px rgba(16, 185, 129, 0.08);
 }
 
 /* ── Section label ── */
@@ -70,17 +98,17 @@ html.dark .section-label {
   height: 5px;
 }
 html.dark ::-webkit-scrollbar-track {
-  background: #111827;
+  background: transparent;
 }
 html.dark ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 4px;
 }
 html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: rgba(255, 255, 255, 0.22);
 }
 html:not(.dark) ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: transparent;
 }
 html:not(.dark) ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
@@ -96,14 +124,7 @@ html:not(.dark) ::-webkit-scrollbar-thumb:hover {
   outline-offset: 2px;
 }
 
-/* ── Tooltip ── */
-.tooltip-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* ── Fade-in animation (kept for legacy use) ── */
+/* ── Fade-in animation ── */
 .fade-in {
   animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -111,7 +132,7 @@ html:not(.dark) ::-webkit-scrollbar-thumb:hover {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -119,26 +140,14 @@ html:not(.dark) ::-webkit-scrollbar-thumb:hover {
   }
 }
 
-/* ── Slide-in for mobile drawer ── */
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 /* ── Button active tactile ── */
 button:not(:disabled):active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 /* ── Smooth input transitions ── */
 input, select, textarea {
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
 input:focus, select:focus, textarea:focus {
