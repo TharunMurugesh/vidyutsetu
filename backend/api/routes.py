@@ -94,8 +94,8 @@ def get_vendors(db: Session = Depends(get_db)):
 @router.post("/generate")
 def generate_synthetic_data(
     vendor_id: str = Query(..., description="Target vendor format: alpha-hes, beta-hes, gamma-mdms, delta-legacy, or canonical"),
-    meter_count: int = Query(3, ge=1, le=20),
-    intervals: int = Query(6, ge=1, le=48),
+    meter_count: int = Query(3, ge=1, le=100, description="Meters count (1 to 100)"),
+    intervals: int = Query(6, ge=1, le=96, description="Intervals per meter (1 to 96)"),
     inject_anomalies: bool = Query(False),
     inject_tampers: bool = Query(False),
     seed: Optional[int] = Query(None, description="RNG seed for reproducible generation"),

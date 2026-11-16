@@ -323,20 +323,36 @@ export const WorkbenchTab: React.FC<WorkbenchTabProps> = ({
                       How many meters?
                     </label>
                     <input
-                      type="number" min={1} max={20} value={meterCount}
-                      onChange={(e) => setMeterCount(parseInt(e.target.value) || 1)}
+                      type="number"
+                      min={1}
+                      max={100}
+                      value={meterCount}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value, 10);
+                        if (isNaN(val)) setMeterCount(1);
+                        else setMeterCount(Math.min(100, Math.max(1, val)));
+                      }}
                       className="w-full bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm font-mono focus:border-emerald-500"
                     />
+                    <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 ml-0.5">1 to 100 meters</p>
                   </div>
                   <div>
                     <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">
                       Readings per meter
                     </label>
                     <input
-                      type="number" min={1} max={48} value={intervals}
-                      onChange={(e) => setIntervals(parseInt(e.target.value) || 1)}
+                      type="number"
+                      min={1}
+                      max={96}
+                      value={intervals}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value, 10);
+                        if (isNaN(val)) setIntervals(1);
+                        else setIntervals(Math.min(96, Math.max(1, val)));
+                      }}
                       className="w-full bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm font-mono focus:border-emerald-500"
                     />
+                    <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 ml-0.5">1 to 96 readings</p>
                   </div>
                 </div>
 

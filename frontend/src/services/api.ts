@@ -9,6 +9,24 @@ import {
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
+function formatApiError(err: any, fallback: string): string {
+  if (!err) return fallback;
+  if (typeof err.detail === 'string') return err.detail;
+  if (Array.isArray(err.detail)) {
+    return (
+      err.detail
+        .map((item: any) => {
+          const field = Array.isArray(item.loc) ? item.loc.slice(-1)[0] : '';
+          return field ? `${field}: ${item.msg}` : item.msg;
+        })
+        .filter(Boolean)
+        .join('; ') || fallback
+    );
+  }
+  if (typeof err.message === 'string') return err.message;
+  return fallback;
+}
+
 export const api = {
   async getHealth(): Promise<{ status: string; service: string; version: string; standards_scope: string[] }> {
     const res = await fetch(`${BASE_URL}/health`);
@@ -49,7 +67,7 @@ export const api = {
     });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      throw new Error(err.detail || `Generate synthetic data failed: ${res.statusText}`);
+      throw new Error(formatApiError(err, `Generate synthetic data failed: ${res.statusText}`));
     }
     return res.json();
   },
@@ -61,7 +79,7 @@ export const api = {
     });
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      throw new Error(err.detail || `Workbench execution failed (${res.status})`);
+      throw new Error(formatApiError(err, `Workbench execution failed (${res.status})`));
     }
     return res.json();
   },
@@ -84,24 +102,25 @@ export const api = {
     );
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      throw new Error(err.detail || `Comparison failed: ${res.statusText}`);
+      throw new Error(formatApiError(err, `Comparison failed: ${res.statusText}`));
     }
     return res.json();
   },
 
-  async getContracts(): Promise<{ contracts: VendorProfile[]; count: number }> {
+  async getContracts(): Promise<{ contracts: VendorProfile[] }> {
     const res = await fetch(`${BASE_URL}/contracts`);
     if (!res.ok) throw new Error(`Fetch contracts failed: ${res.statusText}`);
     return res.json();
   },
 
   async diffContracts(vendorA: string, vendorB: string): Promise<ContractDiffResult> {
-    const res = await fetch(`${BASE_URL}/contracts/diff/${encodeURIComponent(vendorA)}/${encodeURIComponent(vendorB)}`);
+    const res = await fetch(
+      `${BASE_URL}/contracts/diff?vendor_a=${encodeURIComponent(vendorA)}&vendor_b=${encodeURIComponent(vendorB)}`
+    );
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      throw new Error(err.detail || `Contract diff failed: ${res.statusText}`);
+      throw new Error(formatApiError(err, `Contract diff failed: ${res.statusText}`));
     }
     return res.json();
   },
 };
-
